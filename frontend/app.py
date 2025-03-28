@@ -21,7 +21,6 @@ font_options = {
     "Bangers": "https://fonts.googleapis.com/css2?family=Bangers&display=swap",
     "Lobster": "https://fonts.googleapis.com/css2?family=Lobster&display=swap",
     "Pacifico": "https://fonts.googleapis.com/css2?family=Pacifico&display=swap",
-    "Fredoka One": "https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap",
     "Anton": "https://fonts.googleapis.com/css2?family=Anton&display=swap"
 }
 
@@ -30,7 +29,6 @@ font_files = {
     "Bangers": "Bangers-Regular",
     "Lobster": "Lobster-Regular",
     "Pacifico": "Pacifico-Regular",
-    "Fredoka One": "FredokaOne-Regular",
     "Anton": "Anton-Regular"
 }
 
@@ -72,7 +70,7 @@ if st.button("Generate Sticker"):
 
         if os.path.exists(output_path):  # Ensure file exists before displaying
             st.success("Sticker generated successfully! 🎉")
-            st.image(output_path, caption="Generated Sticker", use_column_width=True)
+            st.image(output_path, caption="Generated Sticker", use_container_width=True)
 
             # Download button
             with open(output_path, "rb") as file:
