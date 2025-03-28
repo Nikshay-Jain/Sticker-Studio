@@ -1,3 +1,6 @@
 # Sticker-Studio
 
-To be begun - branch nikshay
+Frontend:
+- Input - image, text
+- Dropdown - original, Ghibli
+- Output - Sticker (downloadable)
