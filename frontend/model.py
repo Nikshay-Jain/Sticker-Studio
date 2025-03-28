@@ -1,5 +1,4 @@
-import os
-import requests
+import os, requests
 from PIL import Image, ImageDraw, ImageFont
 
 OUTPUT_DIR = "stickers"
