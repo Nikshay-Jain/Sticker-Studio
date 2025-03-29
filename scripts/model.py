@@ -1,8 +1,8 @@
 import os, requests
 from PIL import Image, ImageDraw, ImageFont
 
-OUTPUT_DIR = "stickers"
-FONTS_DIR = "fonts"
+OUTPUT_DIR = "./stickers"
+FONTS_DIR = "./fonts"
 
 # Font file mapping (local file names)
 font_files = {
@@ -51,7 +51,7 @@ def download_font(font_name):
 
     return font_path
 
-def generate_sticker(image_path, text, style, color, font_name):
+def generate_sticker(image_path, text, theme, color, font_name):
     """Generates a sticker with text in the specified font."""
     font_key = font_name.replace("-Regular", "")  # Normalize font name
 
@@ -81,8 +81,8 @@ def generate_sticker(image_path, text, style, color, font_name):
     os.makedirs(OUTPUT_DIR, exist_ok=True)
 
     # Save the file
-    output_filename = f"sticker_{font_key}.png"
+    output_filename = f"sticker_{text}.png"
     output_path = os.path.join(OUTPUT_DIR, output_filename)
     image.save(output_path)
 
-    return output_path  # Ensure correct path is returned
+    return output_path

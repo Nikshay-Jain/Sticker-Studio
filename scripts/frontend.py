@@ -1,10 +1,10 @@
-import streamlit as st
 import os
+import streamlit as st
 from model import generate_sticker
 
 # Ensure directories exist
-UPLOAD_DIR = "uploaded_images"
-OUTPUT_DIR = "stickers"
+UPLOAD_DIR = "./uploads"
+OUTPUT_DIR = "./stickers"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
@@ -13,7 +13,7 @@ st.title("AI Sticker Studio 🎨")
 # Take inputs
 uploaded_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
 text_input = st.text_input("Enter Caption for the sticker:")
-style = st.selectbox("Choose Style:", ["Original", "Ghibli"])
+theme = st.selectbox("Choose Theme:", ["Original", "Ghibli"])
 color = st.color_picker("Pick a Text Color", "#FFFFFF")
 
 # Font options (Google Fonts for UI, Local TTF for PIL)
@@ -66,7 +66,7 @@ if st.button("Generate Sticker"):
         font_filename = font_files[selected_font]
 
         # Process the image
-        output_path = generate_sticker(file_path, text_input, style, color, font_filename)
+        output_path = generate_sticker(file_path, text_input, theme, color, font_filename)
 
         if os.path.exists(output_path):  # Ensure file exists before displaying
             st.success("Sticker generated successfully! 🎉")
