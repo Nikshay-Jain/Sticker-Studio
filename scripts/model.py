@@ -1,5 +1,4 @@
-import os
-import logging
+import os, logging
 from fonts import get_font
 from PIL import Image, ImageDraw, ImageFont
 

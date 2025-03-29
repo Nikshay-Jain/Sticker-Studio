@@ -1,6 +1,4 @@
-import os
-import logging
-import requests
+import os, logging, requests
 
 FONTS_DIR = "./fonts"
 
