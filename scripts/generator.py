@@ -1,6 +1,6 @@
-import os, logging, piexif
 from datetime import datetime
-from PIL import Image, ImageDraw, ImageFont, ImageOps
+import os, io, logging, piexif
+from PIL import Image, ImageDraw, ImageFont
 from fonts import get_font
 
 # Configuration
@@ -12,7 +12,7 @@ BACKGROUND_COLOR = (0, 0, 0, 0)  # Transparent
 def create_whatsapp_sticker(image, output_path):
     """Final processing to make image WhatsApp-compatible"""
     try:
-        # Generate minimal EXIF metadata
+        # Generate minimal EXIF metadata required for WhatsApp stickers
         exif_dict = {
             "0th": {
                 piexif.ImageIFD.Make: "WhatsApp",
@@ -24,9 +24,19 @@ def create_whatsapp_sticker(image, output_path):
             "1st": {},
             "thumbnail": None
         }
+        exif_bytes = piexif.dump(exif_dict)
+
+        # Save as WebP first (without EXIF)
+        output_io = io.BytesIO()
+        image.save(output_io, format="WEBP", lossless=True)  # Lossless WebP for stickers
+
+        # Write WebP to file
+        with open(output_path, "wb") as f:
+            f.write(output_io.getvalue())
+
+        # Inject EXIF metadata
+        piexif.insert(exif_bytes, output_path)
         
-        # Save as WebP with EXIF
-        image.save(output_path, format="WEBP", quality=95, exif=piexif.dump(exif_dict))
         return True
     except Exception as e:
         logging.error(f"Error creating WhatsApp sticker: {e}")
@@ -89,7 +99,7 @@ def generate_sticker(seg_img_path, caption, color, font_name, log_filename=None)
         
         # 4. Save as WhatsApp-compatible sticker
         os.makedirs(OUTPUT_DIR, exist_ok=True)
-        output_filename = f"sticker_{caption}_{datetime.now().strftime("%H-%M-%S")}.webp"
+        output_filename = f"sticker_{caption}_{datetime.now().strftime('%H-%M-%S')}.webp"
         output_path = os.path.join(OUTPUT_DIR, output_filename)
         
         if create_whatsapp_sticker(sticker, output_path):
