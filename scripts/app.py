@@ -1,7 +1,10 @@
 import streamlit as st
 import os, atexit, logging
 from datetime import datetime
-from model import generate_sticker
+
+from model import segmentor
+from convertor import theme_convertor
+from generator import generate_sticker
 
 # Ensure necessary directories exist
 UPLOAD_DIR = "./uploads"
@@ -87,9 +90,17 @@ if st.button("Generate Sticker"):
             font_filename = font_files[selected_font]
 
             # Process the image
-            output_path = generate_sticker(file_path, text_input, theme, color, font_filename, log_filename)
+            logging.info(f"Segmenting image: {file_path}")
+            seg_img_path = segmentor(file_path, log_filename)
 
-            if os.path.exists(output_path):  # Ensure file exists before displaying
+            logging.info(f"Theme change to {theme}")
+            themed_seg_img_path = theme_convertor(seg_img_path, theme, log_filename)
+
+            logging.info(f"Generating sticker with caption: {text_input}, theme: {theme}, color: {color}")
+            output_path = generate_sticker(themed_seg_img_path, text_input, color, font_filename, log_filename)
+
+            # Ensure file exists before displaying
+            if os.path.exists(output_path):
                 st.success("Sticker generated successfully! 🎉")
                 st.image(output_path, caption="Generated Sticker", use_container_width=True)
                 logging.info(f"Sticker successfully generated: {output_path}")
