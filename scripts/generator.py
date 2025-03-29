@@ -1,14 +1,40 @@
-import os, logging
+import os, logging, piexif
+from datetime import datetime
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 from fonts import get_font
 
-from datetime import datetime
-from PIL import Image, ImageDraw, ImageFont
-
+# Configuration
 OUTPUT_DIR = "./stickers"
+WHATSAPP_MAX_SIZE = (512, 512)
+DEFAULT_FONT_SIZE = 40
+BACKGROUND_COLOR = (0, 0, 0, 0)  # Transparent
 
-def generate_sticker(seg_img_path, caption, color, font_name, log_filename):
-    """Generates a sticker with caption in the specified font."""
-    # Configure logging to use the same file as the Streamlit app
+def create_whatsapp_sticker(image, output_path):
+    """Final processing to make image WhatsApp-compatible"""
+    try:
+        # Generate minimal EXIF metadata
+        exif_dict = {
+            "0th": {
+                piexif.ImageIFD.Make: "WhatsApp",
+                piexif.ImageIFD.Software: "AI Sticker Studio"
+            },
+            "Exif": {},
+            "GPS": {},
+            "Interop": {},
+            "1st": {},
+            "thumbnail": None
+        }
+        
+        # Save as WebP with EXIF
+        image.save(output_path, format="WEBP", quality=95, exif=piexif.dump(exif_dict))
+        return True
+    except Exception as e:
+        logging.error(f"Error creating WhatsApp sticker: {e}")
+        return False
+
+def generate_sticker(seg_img_path, caption, color, font_name, log_filename=None):
+    """Generates a WhatsApp-compatible sticker with caption"""
+    # Setup logging
     if log_filename:
         logging.basicConfig(
             filename=log_filename,
@@ -16,44 +42,61 @@ def generate_sticker(seg_img_path, caption, color, font_name, log_filename):
             format="%(asctime)s - %(levelname)s - %(message)s",
             datefmt="%Y-%m-%d %H:%M:%S"
         )
+    
+    try:
+        # 1. Load and validate image
+        if not os.path.exists(seg_img_path):
+            raise FileNotFoundError(f"Image not found at {seg_img_path}")
+            
+        image = Image.open(seg_img_path).convert("RGBA")
         
-    # Check if font is available or download it
-    font_key = font_name.replace("-Regular", "")  # Normalize font name
-    font_path = get_font(font_key, log_filename)
-    if font_path and os.path.exists(font_path):
-        try:
-            font = ImageFont.truetype(font_path, 40)
-        except IOError:
-            logging.error(f"Failed to load font {font_name}, using default font.")
-            font = ImageFont.load_default()
-    else:
-        logging.warning(f"Using default font as {font_name} is unavailable.")
-        font = ImageFont.load_default()
-
-    # Load Image
-    try:
-        image = Image.open(seg_img_path)
+        # 2. Process image to sticker format
+        image.thumbnail(WHATSAPP_MAX_SIZE, Image.LANCZOS)
+        sticker = Image.new("RGBA", WHATSAPP_MAX_SIZE, BACKGROUND_COLOR)
+        x_offset = (WHATSAPP_MAX_SIZE[0] - image.size[0]) // 2
+        y_offset = (WHATSAPP_MAX_SIZE[1] - image.size[1]) // 2
+        sticker.paste(image, (x_offset, y_offset), image)
+        
+        # 3. Add caption if provided
+        if caption:
+            # Get font (with fallback)
+            font_path = get_font(font_name.replace("-Regular", ""), log_filename)
+            try:
+                font = ImageFont.truetype(font_path, DEFAULT_FONT_SIZE) if font_path else ImageFont.load_default()
+            except:
+                font = ImageFont.load_default()
+                logging.warning(f"Using default font - couldn't load {font_name}")
+            
+            # Calculate text position (centered at bottom)
+            draw = ImageDraw.Draw(sticker)
+            text_width = draw.textlength(caption, font=font)
+            text_position = (
+                (WHATSAPP_MAX_SIZE[0] - text_width) // 2,  # Center horizontally
+                WHATSAPP_MAX_SIZE[1] - DEFAULT_FONT_SIZE - 20  # 20px from bottom
+            )
+            
+            # Add text with outline for better visibility
+            for x_offset in [-1, 0, 1]:
+                for y_offset in [-1, 0, 1]:
+                    if x_offset or y_offset:
+                        draw.text(
+                            (text_position[0] + x_offset, text_position[1] + y_offset),
+                            caption,
+                            fill="black",
+                            font=font
+                        )
+            draw.text(text_position, caption, fill=color, font=font)
+        
+        # 4. Save as WhatsApp-compatible sticker
+        os.makedirs(OUTPUT_DIR, exist_ok=True)
+        output_filename = f"sticker_{caption}_{datetime.now().strftime("%H-%M-%S")}.webp"
+        output_path = os.path.join(OUTPUT_DIR, output_filename)
+        
+        if create_whatsapp_sticker(sticker, output_path):
+            logging.info(f"Successfully created sticker: {output_path}")
+            return output_path
+        
     except Exception as e:
-        logging.error(f"Failed to open image {seg_img_path}: {e}")
-        return None
-
-    draw = ImageDraw.Draw(image)
-
-    # Draw caption
-    caption_position = (50, 50)
-    draw.text(caption_position, caption, fill=color, font=font)
-
-    # Ensure output directory exists
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-    # Save the file
-    output_filename = f"sticker_{caption}_{datetime.now().strftime('%H-%M-%S')}.png"
-    output_path = os.path.join(OUTPUT_DIR, output_filename)
-    try:
-        image.save(output_path)
-        logging.info(f"Sticker successfully saved: {output_path}")
-    except Exception as e:
-        logging.error(f"Failed to save sticker: {e}")
-        return None
-
-    return output_path
+        logging.error(f"Error generating sticker: {e}")
+    
+    return None
