@@ -1,14 +1,16 @@
-import os, atexit, logging
 import streamlit as st
+import os, atexit, logging
 from datetime import datetime
 from model import generate_sticker
 
 # Ensure necessary directories exist
 UPLOAD_DIR = "./uploads"
 OUTPUT_DIR = "./stickers"
+FONTS_DIR = "./fonts"
 LOG_DIR = "./logs"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
+os.makedirs(FONTS_DIR, exist_ok=True)
 os.makedirs(LOG_DIR, exist_ok=True)
 
 # Configure logging
@@ -85,7 +87,7 @@ if st.button("Generate Sticker"):
             font_filename = font_files[selected_font]
 
             # Process the image
-            output_path = generate_sticker(file_path, text_input, theme, color, font_filename)
+            output_path = generate_sticker(file_path, text_input, theme, color, font_filename, log_filename)
 
             if os.path.exists(output_path):  # Ensure file exists before displaying
                 st.success("Sticker generated successfully! 🎉")
