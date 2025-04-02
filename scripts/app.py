@@ -89,15 +89,23 @@ if st.button("Generate Sticker"):
             # Get correct font filename
             font_filename = font_files[selected_font]
 
+            # Change theme to ghibli if selected
+            if theme == "Ghibli":
+                logging.info("Applying Ghibli theme...")
+                themed_img_path = os.path.join(OUTPUT_DIR, f"themed_{uploaded_file.name}")
+                if not os.path.exists(themed_img_path):
+                    themed_img_path = theme_convertor(file_path, theme, log_filename)
+                else:
+                    logging.info(f"Theme already applied: {themed_img_path}")
+            else:
+                themed_img_path = file_path
+
             # Process the image
             logging.info(f"Segmenting image: {file_path}")
-            seg_img_path = segmentor(file_path, log_filename)
-
-            logging.info(f"Theme change to {theme}")
-            themed_seg_img_path = theme_convertor(seg_img_path, theme, log_filename)
+            seg_img_path = segmentor(themed_img_path, log_filename)
 
             logging.info(f"Generating sticker with caption: {text_input}, theme: {theme}, color: {color}")
-            output_path = generate_sticker(themed_seg_img_path, text_input, color, font_filename, log_filename)
+            output_path = generate_sticker(seg_img_path, text_input, color, font_filename, log_filename)
 
             # Ensure file exists before displaying
             if os.path.exists(output_path):
