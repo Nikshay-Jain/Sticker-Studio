@@ -1,0 +1,22 @@
+2025-04-13 18:05:57 - INFO - Logging configured to file: logs/studio_2025-04-13_18-05-57.log
+2025-04-13 18:05:57 - INFO - GrokImageConverterGUI initialized. Output directory: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\grok_output_images_gui
+2025-04-13 18:05:57 - INFO - Attempting to open Edge and navigate to Grok...
+2025-04-13 18:05:57 - INFO - Pressing the Windows key.
+2025-04-13 18:05:58 - INFO - Typing 'edge'.
+2025-04-13 18:05:59 - INFO - Pressing Enter to open Edge.
+2025-04-13 18:06:00 - INFO - Moving mouse to address bar coordinates: (309, 70).
+2025-04-13 18:06:02 - INFO - Clicking on the address bar.
+2025-04-13 18:06:02 - INFO - Writing Grok URL: https://grok.com/chat/c6a8facb-f82c-46ba-be6b-379d0957bd2a
+2025-04-13 18:06:02 - INFO - Pressing Enter to navigate to Grok.
+2025-04-13 18:06:04 - INFO - Navigated to Grok. Waiting for user login.
+2025-04-13 18:06:04 - INFO - Using prompt: Convert this image to a Ghibli style in HD.
+2025-04-13 18:06:04 - INFO - Attempting to upload image and enter prompt...
+2025-04-13 18:06:04 - INFO - Image found at path: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads\test1.png
+2025-04-13 18:06:04 - INFO - Moving mouse to upload button coordinates: (509, 1024).
+2025-04-13 18:06:05 - INFO - Clicking the upload button.
+2025-04-13 18:06:06 - INFO - Waiting for file dialog to appear.
+2025-04-13 18:06:06 - INFO - Moving mouse to the second upload button coordinates: (576, 922).
+2025-04-13 18:06:08 - INFO - Clicking the second upload button.
+2025-04-13 18:06:09 - INFO - Waiting for file dialog to appear after second click.
+2025-04-13 18:06:09 - INFO - Typing image path into file dialog: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads\test1.png
+2025-04-13 18:06:12 - INFO - Pressing Enter in the file dialog.
