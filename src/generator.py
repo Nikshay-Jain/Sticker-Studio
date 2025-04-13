@@ -1,7 +1,7 @@
 from datetime import datetime
 import os, io, logging, piexif
 from PIL import Image, ImageDraw, ImageFont
-from fonts import get_font
+from scripts.fonts import get_font
 
 # Configuration
 OUTPUT_DIR = "./stickers"
