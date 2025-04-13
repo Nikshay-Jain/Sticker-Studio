@@ -1,6 +1,6 @@
-# Sticker-Studio
+# Ghibli-Sticker-Studio
 
-Pipeline:
+## Pipeline:
 - streamlit run scripts/app.py
 - Upload ghibli images to uploads/ and rest data in variables else, change theme via convertor.py
 - Segment image via model.py
@@ -8,3 +8,10 @@ Pipeline:
 - Refers font.py to get desired fonts via fonts/
 - Saved in stickers/
 - Logs at every step in logs/
+
+## Need to do:
+- REST API and frontend code from Streamlit
+- API call for ghibli conversion
+- Grafana-Prometheus health tracker
+- Classifier to check if the image is already in ghibli or not
+- AI Agent to send the sticker to self in WhatsApp
