@@ -13,5 +13,4 @@
 - REST API and frontend code from Streamlit
 - API call for ghibli conversion
 - Grafana-Prometheus health tracker
-- Classifier to check if the image is already in ghibli or not
 - AI Agent to send the sticker to self in WhatsApp
