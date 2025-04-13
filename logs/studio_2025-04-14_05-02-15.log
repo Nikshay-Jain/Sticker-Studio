@@ -1,0 +1,119 @@
+2025-04-14 05:02:15 - INFO - === AI Sticker Studio started ===
+2025-04-14 05:02:16 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-14 05:02:16 - INFO - ResNet model loaded from: models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5
+2025-04-14 05:02:17 - WARNING - From c:\Users\niksh\Desktop\Ghibli-Sticker-Studio\.venv\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2025-04-14 05:02:24 - INFO - === AI Sticker Studio started ===
+2025-04-14 05:02:25 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-14 05:02:25 - INFO - ResNet model loaded from: models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5
+2025-04-14 05:02:29 - INFO - === AI Sticker Studio started ===
+2025-04-14 05:02:29 - INFO - === AI Sticker Studio started ===
+2025-04-14 05:02:31 - INFO - === AI Sticker Studio started ===
+2025-04-14 05:02:32 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-14 05:02:32 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-14 05:02:32 - INFO - ResNet model loaded from: models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5
+2025-04-14 05:02:32 - INFO - ResNet model loaded from: models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5
+2025-04-14 05:02:32 - ERROR - Error loading ResNet model: 'NoneType' object has no attribute 'pop'. 'Normal' prediction based theming will be skipped.
+2025-04-14 05:02:32 - INFO - Uploaded file saved: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads\IMG_0037.JPG
+2025-04-14 05:02:32 - INFO - Segmenting image: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads\IMG_0037.JPG
+2025-04-14 05:02:32 - INFO - Generating sticker with caption: cap, theme: Original, color: #FFFFFF
+2025-04-14 05:02:33 - INFO - Successfully created sticker: ./stickers\sticker_cap_05-02-33.webp
+2025-04-14 05:02:33 - INFO - Sticker successfully generated: ./stickers\sticker_cap_05-02-33.webp
+2025-04-14 05:02:45 - INFO - === AI Sticker Studio started ===
+2025-04-14 05:02:46 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-14 05:02:46 - INFO - ResNet model loaded from: models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5
+2025-04-14 05:02:48 - INFO - === AI Sticker Studio started ===
+2025-04-14 05:02:50 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-14 05:02:50 - INFO - ResNet model loaded from: models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5
+2025-04-14 05:02:50 - INFO - Uploaded file saved: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads\IMG_0034.JPG
+2025-04-14 05:02:52 - INFO - Applying Ghibli theme...
+2025-04-14 05:02:52 - INFO - Logging configured to file: logs\studio_2025-04-14_05-02-48.log
+2025-04-14 05:02:52 - INFO - GrokImageConverterGUI initialized. Output directory: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\grok_output_images_gui
+2025-04-14 05:02:52 - INFO - Attempting to open Edge and navigate to Grok...
+2025-04-14 05:02:52 - INFO - Pressing the Windows key.
+2025-04-14 05:02:53 - INFO - Typing 'edge'.
+2025-04-14 05:02:54 - INFO - Pressing Enter to open Edge.
+2025-04-14 05:02:55 - INFO - Moving mouse to address bar coordinates: (309, 70).
+2025-04-14 05:02:57 - INFO - Clicking on the address bar.
+2025-04-14 05:02:57 - INFO - Writing Grok URL: https://grok.com/chat/c6a8facb-f82c-46ba-be6b-379d0957bd2a
+2025-04-14 05:02:57 - INFO - Pressing Enter to navigate to Grok.
+2025-04-14 05:02:59 - INFO - Navigated to Grok. Waiting for user login.
+2025-04-14 05:02:59 - INFO - Using prompt: Convert this image to a Ghibli style in HD.
+2025-04-14 05:02:59 - INFO - Attempting to upload image and enter prompt...
+2025-04-14 05:02:59 - INFO - Image found at path: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads\IMG_0034.JPG
+2025-04-14 05:02:59 - INFO - Moving mouse to upload button coordinates: (509, 1024).
+2025-04-14 05:03:00 - INFO - Clicking the upload button.
+2025-04-14 05:03:01 - INFO - Waiting for file dialog to appear.
+2025-04-14 05:03:01 - INFO - Moving mouse to the second upload button coordinates: (576, 922).
+2025-04-14 05:03:02 - INFO - Clicking the second upload button.
+2025-04-14 05:03:04 - INFO - Waiting for file dialog to appear after second click.
+2025-04-14 05:03:04 - INFO - Typing image path into file dialog: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads\IMG_0034.JPG
+2025-04-14 05:03:07 - INFO - Pressing Enter in the file dialog.
+2025-04-14 05:03:09 - INFO - Waiting for image to upload.
+2025-04-14 05:03:09 - INFO - Moving mouse to prompt field coordinates: (847, 956).
+2025-04-14 05:03:10 - INFO - Clicking on the prompt field.
+2025-04-14 05:03:10 - INFO - Writing prompt: Convert this image to a Ghibli style in HD.
+2025-04-14 05:03:13 - INFO - Pressing Enter after writing the prompt.
+2025-04-14 05:03:52 - INFO - Image uploaded and prompt entered. Waiting for output.
+2025-04-14 05:03:52 - INFO - Attempting to save the output image...
+2025-04-14 05:03:52 - INFO - Moving mouse to output image coordinates: (1152, 535).
+2025-04-14 05:03:54 - INFO - Right-clicking on the output image.
+2025-04-14 05:03:55 - INFO - Moving mouse to 'Save image as...' coordinates: (1158, 535).
+2025-04-14 05:03:56 - INFO - Clicking 'Save image as...'
+2025-04-14 05:03:58 - INFO - Waiting for the save dialog.
+2025-04-14 05:03:58 - INFO - Typing output filename: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\grok_output_images_gui\grok_ghibli_output.png
+2025-04-14 05:04:00 - INFO - Pressing Enter to save the image.
+2025-04-14 05:04:03 - INFO - Output image saved to: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\grok_output_images_gui\grok_ghibli_output.png
+2025-04-14 05:04:03 - INFO - Ghibli image saved at: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\grok_output_images_gui\grok_ghibli_output.png
+2025-04-14 05:04:03 - INFO - theme_convertor function finished. Returning: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\grok_output_images_gui\grok_ghibli_output.png
+2025-04-14 05:04:03 - INFO - Segmenting image: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads\IMG_0034.JPG
+2025-04-14 05:04:03 - INFO - Generating sticker with caption: cap, theme: Original, color: #FFFFFF
+2025-04-14 05:04:03 - ERROR - Error generating sticker: Image not found at C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\grok_output_images_gui\grok_ghibli_output.png
+2025-04-14 05:04:03 - ERROR - Error in sticker generation: stat: path should be string, bytes, os.PathLike or integer, not NoneType
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\app.py", line 126, in <module>
+    if os.path.exists(output_path):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen genericpath>", line 19, in exists
+TypeError: stat: path should be string, bytes, os.PathLike or integer, not NoneType
+2025-04-14 05:05:46 - INFO - === AI Sticker Studio started ===
+2025-04-14 05:05:47 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-14 05:05:47 - INFO - ResNet model loaded from: models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5
+2025-04-14 05:05:55 - INFO - === AI Sticker Studio started ===
+2025-04-14 05:05:56 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-14 05:05:56 - INFO - ResNet model loaded from: models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5
+2025-04-14 05:05:57 - INFO - === AI Sticker Studio started ===
+2025-04-14 05:05:58 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-14 05:05:58 - INFO - ResNet model loaded from: models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5
+2025-04-14 05:05:59 - INFO - === AI Sticker Studio started ===
+2025-04-14 05:06:00 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-14 05:06:00 - INFO - ResNet model loaded from: models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5
+2025-04-14 05:06:00 - INFO - Uploaded file saved: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads\IMG_6201.JPG
+2025-04-14 05:06:02 - INFO - Applying Ghibli theme...
+2025-04-14 05:06:02 - INFO - Logging configured to file: logs\studio_2025-04-14_05-05-59.log
+2025-04-14 05:06:02 - INFO - GrokImageConverterGUI initialized. Output directory: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\grok_output_images_gui
+2025-04-14 05:06:02 - INFO - Attempting to open Edge and navigate to Grok...
+2025-04-14 05:06:02 - INFO - Pressing the Windows key.
+2025-04-14 05:06:03 - INFO - Typing 'edge'.
+2025-04-14 05:06:05 - INFO - Pressing Enter to open Edge.
+2025-04-14 05:06:06 - INFO - Moving mouse to address bar coordinates: (309, 70).
+2025-04-14 05:06:07 - INFO - Clicking on the address bar.
+2025-04-14 05:06:07 - INFO - Writing Grok URL: https://grok.com/chat/c6a8facb-f82c-46ba-be6b-379d0957bd2a
+2025-04-14 05:06:08 - INFO - Pressing Enter to navigate to Grok.
+2025-04-14 05:06:10 - INFO - Navigated to Grok. Waiting for user login.
+2025-04-14 05:06:10 - INFO - Using prompt: Convert this image to a Ghibli style in HD.
+2025-04-14 05:06:10 - INFO - Attempting to upload image and enter prompt...
+2025-04-14 05:06:10 - INFO - Image found at path: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads\IMG_6201.JPG
+2025-04-14 05:06:10 - INFO - Moving mouse to upload button coordinates: (509, 1024).
+2025-04-14 05:06:11 - INFO - Clicking the upload button.
+2025-04-14 05:06:12 - INFO - Waiting for file dialog to appear.
+2025-04-14 05:06:12 - INFO - Moving mouse to the second upload button coordinates: (576, 922).
+2025-04-14 05:06:13 - INFO - Clicking the second upload button.
+2025-04-14 05:06:14 - INFO - Waiting for file dialog to appear after second click.
+2025-04-14 05:06:14 - INFO - Typing image path into file dialog: C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads\IMG_6201.JPG
+2025-04-14 05:06:17 - INFO - Pressing Enter in the file dialog.
+2025-04-14 05:06:19 - INFO - Waiting for image to upload.
+2025-04-14 05:06:19 - INFO - Moving mouse to prompt field coordinates: (847, 956).
+2025-04-14 05:06:21 - INFO - Clicking on the prompt field.
+2025-04-14 05:06:21 - INFO - Writing prompt: Convert this image to a Ghibli style in HD.
+2025-04-14 05:06:24 - INFO - Pressing Enter after writing the prompt.
