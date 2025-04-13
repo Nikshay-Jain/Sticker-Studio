@@ -41,7 +41,7 @@ class GrokImageConverterGUI:
         pyautogui.write(grok_url)
         logging.info("Pressing Enter to navigate to Grok.")
         pyautogui.press('enter')
-        time.sleep(1.5)
+        time.sleep(2)
         print("Navigated to Grok. Please ensure you are logged in.")
         logging.info("Navigated to Grok. Waiting for user login.")
         # input("Press Enter once you are logged in to Grok...")

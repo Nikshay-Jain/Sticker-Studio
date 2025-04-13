@@ -2,15 +2,18 @@ import streamlit as st
 import os, atexit, logging
 from datetime import datetime
 
-from model import segmentor
-from convertor import theme_convertor
-from generator import generate_sticker
+from segmentor_model import segmentor
+from to_ghibli import theme_convertor
+from sticker_generator import generate_sticker
+from ghibli_normal_classifier import predict_with_resnet
+
+from tensorflow.keras.models import load_model
 
 # Ensure necessary directories exist
-UPLOAD_DIR = "./uploads"
-OUTPUT_DIR = "./stickers"
-FONTS_DIR = "./fonts"
-LOG_DIR = "./logs"
+UPLOAD_DIR = r"C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\uploads"
+OUTPUT_DIR = "stickers"
+FONTS_DIR = "fonts"
+LOG_DIR = "logs"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(FONTS_DIR, exist_ok=True)
@@ -34,6 +37,18 @@ def log_exit():
 
 _exit_logged = False
 atexit.register(log_exit)
+
+# Load classifier model
+try:
+    resnet_model_path = 'models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5'
+    resnet_model = load_model(resnet_model_path)
+    logging.info(f"ResNet model loaded from: {resnet_model_path}")
+except FileNotFoundError:
+    resnet_model = None
+    logging.warning(f"ResNet model not found at: {resnet_model_path}. 'Normal' prediction based theming will be skipped.")
+except Exception as e:
+    resnet_model = None
+    logging.error(f"Error loading ResNet model: {e}. 'Normal' prediction based theming will be skipped.")
 
 # Streamlit UI
 st.title("AI Sticker Studio 🎨")
@@ -90,11 +105,11 @@ if st.button("Generate Sticker"):
             font_filename = font_files[selected_font]
 
             # Change theme to ghibli if selected
-            if theme == "Ghibli":
+            if resnet_model is not None and predict_with_resnet(file_path, resnet_model, log_filename):
                 logging.info("Applying Ghibli theme...")
                 themed_img_path = os.path.join(OUTPUT_DIR, f"themed_{uploaded_file.name}")
                 if not os.path.exists(themed_img_path):
-                    themed_img_path = theme_convertor(file_path, theme, log_filename)
+                    themed_img_path = theme_convertor(file_path, log_filename)
                 else:
                     logging.info(f"Theme already applied: {themed_img_path}")
             else:
