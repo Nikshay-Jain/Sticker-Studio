@@ -80,10 +80,10 @@ class GrokImageConverterGUI:
         # Type the image path into the file dialog
         logging.info(f"Typing image path into file dialog: {image_path}")
         pyautogui.write(image_path)
-        time.sleep(3)
+        time.sleep(4)
         logging.info("Pressing Enter in the file dialog.")
         pyautogui.press('enter')
-        time.sleep(2) # Wait for the image to upload
+        time.sleep(3) # Wait for the image to upload
         logging.info("Waiting for image to upload.")
 
         # **YOU WILL NEED TO FIND THE COORDINATES FOR THE PROMPT INPUT FIELD**
@@ -100,7 +100,7 @@ class GrokImageConverterGUI:
 
         logging.info("Pressing Enter after writing the prompt.")
         pyautogui.press('enter')
-        time.sleep(39) # Wait for the Ghibli image to be generated. Adjust as needed.
+        time.sleep(45) # Wait for the Ghibli image to be generated. Adjust as needed.
         print("Image uploaded and prompt entered. Waiting for output...")
         logging.info("Image uploaded and prompt entered. Waiting for output.")
         return True
@@ -129,7 +129,7 @@ class GrokImageConverterGUI:
         time.sleep(2) # Wait for the save dialog
         logging.info("Waiting for the save dialog.")
 
-        output_filename = os.path.join(self.output_dir, "grok_ghibli_output.png")
+        output_filename = os.path.join(self.output_dir, f"grok_ghibli_output_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.png")
         logging.info(f"Typing output filename: {output_filename}")
         pyautogui.write(output_filename)
         time.sleep(2)
