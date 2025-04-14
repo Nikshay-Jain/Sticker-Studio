@@ -12,5 +12,6 @@
 ## Need to do:
 - REST API and frontend code from Streamlit
 - API call for ghibli conversion
+- from which directory, exactly to take image for grok?
 - Grafana-Prometheus health tracker
 - AI Agent to send the sticker to self in WhatsApp

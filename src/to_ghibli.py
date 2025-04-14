@@ -6,7 +6,7 @@ import os
 
 class GrokImageConverterGUI:
     def __init__(self):
-        self.output_dir = r"C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\grok_output_images_gui"
+        self.output_dir = r"C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\ghibli_images"
         os.makedirs(self.output_dir, exist_ok=True)
         logging.info(f"GrokImageConverterGUI initialized. Output directory: {self.output_dir}")
 
@@ -27,7 +27,7 @@ class GrokImageConverterGUI:
         # Press Enter to open Microsoft Edge
         logging.info("Pressing Enter to open Edge.")
         pyautogui.press('enter')
-        time.sleep(1)  # Wait for Edge to open
+        time.sleep(2)  # Wait for Edge to open
 
         # **YOU MIGHT NEED TO ADJUST THE COORDINATES FOR THE ADDRESS BAR**
         address_bar_x = 309
@@ -41,10 +41,9 @@ class GrokImageConverterGUI:
         pyautogui.write(grok_url)
         logging.info("Pressing Enter to navigate to Grok.")
         pyautogui.press('enter')
-        time.sleep(2)
+        time.sleep(3)
         print("Navigated to Grok. Please ensure you are logged in.")
         logging.info("Navigated to Grok. Waiting for user login.")
-        # input("Press Enter once you are logged in to Grok...")
         return True
 
     def upload_image_and_prompt(self, image_path, prompt):
@@ -64,7 +63,7 @@ class GrokImageConverterGUI:
         pyautogui.moveTo(upload_button_x, upload_button_y, duration=1)
         logging.info("Clicking the upload button.")
         pyautogui.click()
-        time.sleep(1) # Wait for the file dialog
+        time.sleep(2) # Wait for the file dialog
         logging.info("Waiting for file dialog to appear.")
 
         upload_button_x_2 = 576
@@ -74,16 +73,16 @@ class GrokImageConverterGUI:
         pyautogui.moveTo(upload_button_x_2, upload_button_y_2, duration=1)
         logging.info("Clicking the second upload button.")
         pyautogui.click()
-        time.sleep(1) # Wait for the file dialog
+        time.sleep(2) # Wait for the file dialog
         logging.info("Waiting for file dialog to appear after second click.")
 
         # Type the image path into the file dialog
         logging.info(f"Typing image path into file dialog: {image_path}")
         pyautogui.write(image_path)
-        time.sleep(4)
+        time.sleep(3)
         logging.info("Pressing Enter in the file dialog.")
         pyautogui.press('enter')
-        time.sleep(3) # Wait for the image to upload
+        time.sleep(4) # Wait for the image to upload
         logging.info("Waiting for image to upload.")
 
         # **YOU WILL NEED TO FIND THE COORDINATES FOR THE PROMPT INPUT FIELD**
@@ -96,11 +95,11 @@ class GrokImageConverterGUI:
         pyautogui.click()
         logging.info(f"Writing prompt: {prompt}")
         pyautogui.write(prompt)
-        time.sleep(3)
+        time.sleep(4)
 
         logging.info("Pressing Enter after writing the prompt.")
         pyautogui.press('enter')
-        time.sleep(45) # Wait for the Ghibli image to be generated. Adjust as needed.
+        time.sleep(40) # Wait for the Ghibli image to be generated. Adjust as needed.
         print("Image uploaded and prompt entered. Waiting for output...")
         logging.info("Image uploaded and prompt entered. Waiting for output.")
         return True
@@ -178,4 +177,4 @@ def theme_convertor(image_path, log_filename):
 
 if __name__ == "__main__":
     os.makedirs("logs", exist_ok=True)
-    print(theme_convertor(r"C:\Users\niksh\Desktop\test1.png", f"logs/studio_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log"))
+    print(theme_convertor(r"C:\Users\niksh\Desktop\test_00.png", f"logs/studio_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log"))
