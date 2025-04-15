@@ -3,7 +3,7 @@ import os, atexit, logging
 from datetime import datetime
 
 from segmentor_model import segmentor
-from to_ghibli import theme_convertor
+from to_ghibli_grok_hardcoded import theme_convertor
 from sticker_generator import conv_to_sticker
 from check_conv_ghibli import is_normal
 
