@@ -42,7 +42,7 @@ def create_whatsapp_sticker(image, output_path):
         logging.error(f"Error creating WhatsApp sticker: {e}")
         return False
 
-def generate_sticker(seg_img_path, caption, color, font_name, log_filename=None):
+def conv_to_sticker(seg_img_path, caption, color, font_name, log_filename=None):
     """Generates a WhatsApp-compatible sticker with caption"""
     # Setup logging
     if log_filename:
