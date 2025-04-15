@@ -10,8 +10,11 @@
 - Logs at every step in logs/
 
 ## Need to do:
+- Integrate feature for text to ghibli generation as option
+- shift to check_conv_ghibli from hardcoded stuff and edit app.py accordingly
+
 - REST API and frontend code from Streamlit
-- API call for ghibli conversion
-- from which directory, exactly to take image for grok?
+
 - Grafana-Prometheus health tracker
+
 - AI Agent to send the sticker to self in WhatsApp
