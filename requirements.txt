@@ -1,6 +1,5 @@
+numpy
 pillow
 tensorflow
-streamlit
 piexif
-numpy
-pyautogui
+streamlit
