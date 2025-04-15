@@ -1,5 +1,4 @@
-numpy
+piexif
 pillow
 tensorflow
-piexif
 streamlit
