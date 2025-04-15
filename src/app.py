@@ -4,9 +4,10 @@ from datetime import datetime
 
 from segmentor_model import segmentor
 from to_ghibli import theme_convertor
-from sticker_generator import generate_sticker
-from ghibli_normal_classifier import predict_with_resnet
+from sticker_generator import conv_to_sticker
+from check_conv_ghibli import is_normal
 
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 from tensorflow.keras.models import load_model
 
 # Ensure necessary directories exist
@@ -40,15 +41,15 @@ atexit.register(log_exit)
 
 # Load classifier model
 try:
-    resnet_model_path = 'models\Ghibli-normal-classifier\Resnet_ghibli_normal.h5'
-    resnet_model = load_model(resnet_model_path)
-    logging.info(f"ResNet model loaded from: {resnet_model_path}")
+    is_normal_classifier_path = 'models\Ghibli-normal-classifier\Mobilenet_ghibli_normal.h5'
+    is_normal_classifier = load_model(is_normal_classifier_path)
+    logging.info(f"Classifier model loaded from: {is_normal_classifier_path}")
 except FileNotFoundError:
-    resnet_model = None
-    logging.warning(f"ResNet model not found at: {resnet_model_path}. 'Normal' prediction based theming will be skipped.")
+    is_normal_classifier = None
+    logging.warning(f"Classifier model not found at: {is_normal_classifier_path}. 'Normal' prediction based theming will be skipped.")
 except Exception as e:
-    resnet_model = None
-    logging.error(f"Error loading ResNet model: {e}. 'Normal' prediction based theming will be skipped.")
+    is_normal_classifier = None
+    logging.error(f"Error loading Classifier model: {e}. 'Normal' prediction based theming will be skipped.")
 
 # Streamlit UI
 st.title("AI Sticker Studio 🎨")
@@ -56,7 +57,6 @@ st.title("AI Sticker Studio 🎨")
 # Take inputs
 uploaded_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
 text_input = st.text_input("Enter Caption for the sticker:")
-theme = st.selectbox("Choose Theme:", ["Original", "Ghibli"])
 color = st.color_picker("Pick a Text Color", "#FFFFFF")
 
 # Font options
@@ -105,9 +105,15 @@ if st.button("Generate Sticker"):
             font_filename = font_files[selected_font]
 
             # Change theme to ghibli if selected
-            if resnet_model is not None and predict_with_resnet(file_path, resnet_model, log_filename):
+            img_status = is_normal(file_path, is_normal_classifier, log_filename)
+            if img_status is None:
+                logging.warning("Image classification failed. Skipping theme conversion.")
+                themed_img_path = file_path
+
+            elif is_normal_classifier is not None and img_status:
                 logging.info("Applying Ghibli theme...")
                 themed_img_path = os.path.join(OUTPUT_DIR, f"themed_{uploaded_file.name}")
+
                 if not os.path.exists(themed_img_path):
                     themed_img_path = theme_convertor(file_path, log_filename)
                 else:
@@ -119,8 +125,8 @@ if st.button("Generate Sticker"):
             logging.info(f"Segmenting image: {file_path}")
             seg_img_path = segmentor(themed_img_path, log_filename)
 
-            logging.info(f"Generating sticker with caption: {text_input}, theme: {theme}, color: {color}")
-            output_path = generate_sticker(seg_img_path, text_input, color, font_filename, log_filename)
+            logging.info(f"Generating sticker with caption: {text_input}")
+            output_path = conv_to_sticker(seg_img_path, text_input, color, font_filename, log_filename)
 
             # Ensure file exists before displaying
             if os.path.exists(output_path):
