@@ -1,2 +1,5 @@
 /.venv
 /data
+.env
+credentials.txt
+config.ini
