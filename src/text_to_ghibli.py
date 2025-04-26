@@ -1,7 +1,7 @@
 from datetime import datetime
 import os, json, logging, requests, configparser
 
-def generate_ghibli_image(text, log_filename=None):
+def generate_ghibli_from_text(text, log_filename=None):
     """
     Generates a Ghibli-style image using the Modelslab API,
     downloads the image, saves it locally, and returns the local file path.
@@ -111,6 +111,6 @@ if __name__ == "__main__":
 
     text_prompt = "a bunny dressed as a tired footballer in a field"
     print("Generating Ghibli image...")
-    saved_image_path = generate_ghibli_image(text_prompt)
+    saved_image_path = generate_ghibli_from_text(text_prompt)
     if saved_image_path:
         print(f"The saved Ghibli image path is: {saved_image_path}")

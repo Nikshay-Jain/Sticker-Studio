@@ -12,9 +12,7 @@
 ## Need to do:
 - Integrate feature for text to ghibli generation as option
 
-- shift to check_conv_ghibli and edit app.py accordingly
-
-- Add tags on bottom and caption on top.
+- Add tags on bottom.
 
 - REST API and frontend code from Streamlit
 

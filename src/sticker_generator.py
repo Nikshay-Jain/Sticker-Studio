@@ -44,7 +44,7 @@ def create_whatsapp_sticker(image, output_path):
         return False
 
 def conv_to_sticker(seg_img_path, caption, color, font_name, log_filename=None):
-    """Generates a WhatsApp-compatible sticker with caption"""
+    """Generates a WhatsApp-compatible sticker with caption at the TOP"""
     # Setup logging
     if log_filename:
         logging.basicConfig(
@@ -78,20 +78,20 @@ def conv_to_sticker(seg_img_path, caption, color, font_name, log_filename=None):
                 font = ImageFont.load_default()
                 logging.warning(f"Using default font - couldn't load {font_name}")
             
-            # Calculate text position (centered at bottom)
+            # Calculate text position (centered at TOP)
             draw = ImageDraw.Draw(sticker)
             text_width = draw.textlength(caption, font=font)
             text_position = (
                 (WHATSAPP_MAX_SIZE[0] - text_width) // 2,  # Center horizontally
-                WHATSAPP_MAX_SIZE[1] - DEFAULT_FONT_SIZE - 20  # 20px from bottom
+                20  # 20px from top
             )
             
             # Add text with outline for better visibility
-            for x_offset in [-1, 0, 1]:
-                for y_offset in [-1, 0, 1]:
-                    if x_offset or y_offset:
+            for x_shift in [-1, 0, 1]:
+                for y_shift in [-1, 0, 1]:
+                    if x_shift or y_shift:
                         draw.text(
-                            (text_position[0] + x_offset, text_position[1] + y_offset),
+                            (text_position[0] + x_shift, text_position[1] + y_shift),
                             caption,
                             fill="black",
                             font=font
@@ -100,16 +100,12 @@ def conv_to_sticker(seg_img_path, caption, color, font_name, log_filename=None):
         
         # 4. Save as WhatsApp-compatible sticker
         os.makedirs(OUTPUT_DIR, exist_ok=True)
-        safe_caption = "".join(c for c in caption if c.isalnum() or c in (' ', '_')).rstrip()
-        output_filename = f"sticker_{safe_caption}_{datetime.now().strftime('%H-%M-%S')}.webp"
+        output_filename = f"sticker_{caption}_{datetime.now().strftime('%H-%M-%S')}.webp"
         output_path = os.path.join(OUTPUT_DIR, output_filename)
-
+        
         if create_whatsapp_sticker(sticker, output_path):
             logging.info(f"Successfully created sticker: {output_path}")
             return output_path
-        else:
-            logging.error("Failed to create WhatsApp sticker.")
-            return None
         
     except Exception as e:
         logging.error(f"Error generating sticker: {e}")
