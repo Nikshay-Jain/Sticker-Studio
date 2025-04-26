@@ -1,10 +1,11 @@
 from datetime import datetime
 import os, io, logging, piexif
+
 from PIL import Image, ImageDraw, ImageFont
 from fonts import get_font
 
 # Configuration
-OUTPUT_DIR = "./stickers"
+OUTPUT_DIR = "stickers"
 WHATSAPP_MAX_SIZE = (512, 512)
 DEFAULT_FONT_SIZE = 40
 BACKGROUND_COLOR = (0, 0, 0, 0)  # Transparent
@@ -99,14 +100,37 @@ def conv_to_sticker(seg_img_path, caption, color, font_name, log_filename=None):
         
         # 4. Save as WhatsApp-compatible sticker
         os.makedirs(OUTPUT_DIR, exist_ok=True)
-        output_filename = f"sticker_{caption}_{datetime.now().strftime('%H-%M-%S')}.webp"
+        safe_caption = "".join(c for c in caption if c.isalnum() or c in (' ', '_')).rstrip()
+        output_filename = f"sticker_{safe_caption}_{datetime.now().strftime('%H-%M-%S')}.webp"
         output_path = os.path.join(OUTPUT_DIR, output_filename)
-        
+
         if create_whatsapp_sticker(sticker, output_path):
             logging.info(f"Successfully created sticker: {output_path}")
             return output_path
+        else:
+            logging.error("Failed to create WhatsApp sticker.")
+            return None
         
     except Exception as e:
         logging.error(f"Error generating sticker: {e}")
     
     return None
+
+if __name__ == "__main__":
+    # Example usage
+    image_path = "uploads\Camera360_2015_4_13_013444.jpg"
+    caption = "Hello World!"
+    color = (255, 0, 0)  # Red
+    font_name = "Bangers-Regular"
+
+    # Configuration
+    OUTPUT_DIR = "stickers_new"
+    WHATSAPP_MAX_SIZE = (512, 512)
+    DEFAULT_FONT_SIZE = 40
+    BACKGROUND_COLOR = (0, 0, 0, 0)
+
+    sticker_path = conv_to_sticker(image_path, caption, color, font_name)
+    if sticker_path:
+        print(f"Sticker created at: {sticker_path}")
+    else:
+        print("Failed to create sticker.")

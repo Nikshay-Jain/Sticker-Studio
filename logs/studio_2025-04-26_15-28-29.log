@@ -1,0 +1,29 @@
+2025-04-26 15:28:29 - INFO - === AI Sticker Studio started ===
+2025-04-26 15:28:32 - WARNING - From c:\Users\niksh\Desktop\Ghibli-Sticker-Studio\.venv\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2025-04-26 15:28:59 - INFO - === AI Sticker Studio started ===
+2025-04-26 15:29:01 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-26 15:29:01 - INFO - Classifier model loaded from: models\Ghibli-normal-classifier\Mobilenet_ghibli_normal.h5
+2025-04-26 15:29:11 - INFO - === AI Sticker Studio started ===
+2025-04-26 15:29:14 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-26 15:29:14 - INFO - Classifier model loaded from: models\Ghibli-normal-classifier\Mobilenet_ghibli_normal.h5
+2025-04-26 15:29:16 - INFO - === AI Sticker Studio started ===
+2025-04-26 15:29:18 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-26 15:29:18 - INFO - Classifier model loaded from: models\Ghibli-normal-classifier\Mobilenet_ghibli_normal.h5
+2025-04-26 15:29:19 - INFO - === AI Sticker Studio started ===
+2025-04-26 15:29:21 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-26 15:29:21 - INFO - Classifier model loaded from: models\Ghibli-normal-classifier\Mobilenet_ghibli_normal.h5
+2025-04-26 15:29:23 - INFO - === AI Sticker Studio started ===
+2025-04-26 15:29:25 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-26 15:29:25 - INFO - Classifier model loaded from: models\Ghibli-normal-classifier\Mobilenet_ghibli_normal.h5
+2025-04-26 15:29:25 - INFO - Uploaded file saved: uploads\grok_ghibli_output_2025-04-14_05-28-21.png
+2025-04-26 15:29:29 - ERROR - Error creating WhatsApp sticker: [Errno 22] Invalid argument: './stickers\\sticker_Ghibli?_15-29-28.webp'
+2025-04-26 15:29:29 - ERROR - Error in processing sticker: stat: path should be string, bytes, os.PathLike or integer, not NoneType
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 81, in process_sticker
+    if os.path.exists(output_path):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen genericpath>", line 19, in exists
+TypeError: stat: path should be string, bytes, os.PathLike or integer, not NoneType
+2025-04-26 16:20:16 - INFO - === AI Sticker Studio closed ===
+2025-04-26 16:20:16 - INFO - === AI Sticker Studio closed ===
