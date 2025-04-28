@@ -1,11 +1,11 @@
 import os, atexit, logging
 from datetime import datetime
+from tensorflow.keras.models import load_model
+
+from to_ghibli import *
 from segmentor_model import segmentor
-from to_ghibli_grok_hardcoded import theme_convertor
-from text_to_ghibli import generate_ghibli_from_text
 from sticker_generator import conv_to_sticker
 from check_conv_ghibli import is_normal
-from tensorflow.keras.models import load_model
 
 UPLOAD_DIR = "uploads"
 OUTPUT_DIR = "stickers"
@@ -69,7 +69,7 @@ def process_sticker(uploaded_file, text_input, color, selected_font, font_files,
             logging.info("Applying Ghibli theme...")
             themed_img_path = os.path.join(OUTPUT_DIR, f"themed_{uploaded_file.name}")
             if not os.path.exists(themed_img_path):
-                themed_img_path = theme_convertor(file_path, log_filename)
+                themed_img_path = generate_ghibli_from_image(file_path, log_filename)
             else:
                 logging.info(f"Theme already applied: {themed_img_path}")
         else:
@@ -88,14 +88,3 @@ def process_sticker(uploaded_file, text_input, color, selected_font, font_files,
     except Exception as e:
         logging.exception(f"Error in processing sticker: {e}")
         return None
-
-def generate_image_from_prompt(prompt, log_filename):
-    # your text2img model inference here
-    # return generated image path
-    pass
-
-def process_uploaded_image_to_sticker(uploaded_file, caption, color, selected_font, is_normal_classifier, log_filename):
-    # everything for processing uploaded file to sticker
-    # classify -> resize -> caption -> save
-    # return final sticker path
-    pass

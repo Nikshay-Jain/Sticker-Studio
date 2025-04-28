@@ -105,6 +105,10 @@ def generate_ghibli_from_text(text, log_filename=None):
         logger.error(f"An unexpected error occurred: {e}")
         return None
 
+def generate_ghibli_from_image(image_path, log_filename=None):
+    ghibli_image_path = image_path
+    return ghibli_image_path
+
 if __name__ == "__main__":
     config = configparser.ConfigParser()
     config.read('config.ini')

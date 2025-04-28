@@ -10,12 +10,14 @@
 - Logs at every step in logs/
 
 ## Need to do:
-- Integrate feature for text to ghibli generation as option
+- Integrate feature for text to ghibli generation:
+to_ghibli, main.py, app.py to be updated for 2 options
 
-- Add tags on bottom.
+- Add tags on bottom of sticker
 
-- REST API and frontend code from Streamlit
+- REST API and Streamlit
 
 - Grafana-Prometheus health tracker
 
+Bonus:
 - AI Agent to send the sticker to self in WhatsApp
