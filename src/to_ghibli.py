@@ -33,7 +33,7 @@ def generate_ghibli_from_text(text, log_filename=None):
         logger.addHandler(handler)
 
     url = "https://modelslab.com/api/v6/realtime/text2img"
-    ghibli = "Create an image in the style of Studio Ghibli of "
+    ghibli = "Draw in the beutiful, handpainted style of Studio Ghibli. Lush environments, soft lighting, characterfule designs."
     prompt = ghibli + text
 
     config = configparser.ConfigParser()
@@ -54,13 +54,12 @@ def generate_ghibli_from_text(text, log_filename=None):
         "negative_prompt": "blurry, low quality",
         "width": "512",
         "height": "512",
-        "samples": "1"
+        "samples": "3"
     }
 
     headers = {
         "Content-Type": "application/json"
     }
-
     try:
         logger.info(f"Sending request to Modelslab API with prompt: '{prompt}'")
         response = requests.post(url, headers=headers, data=json.dumps(payload))
@@ -73,11 +72,12 @@ def generate_ghibli_from_text(text, log_filename=None):
             logger.info(f"Generated Image URL: {image_url}")
 
             # Download and save the image
-            os.makedirs("ghibli images", exist_ok=True)
+            GHIBLI_DIR = "ghibli images"
+            os.makedirs(GHIBLI_DIR, exist_ok=True)
+            logger.info(f"Creating directory for images: {GHIBLI_DIR}")
+
             timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             filename = f"ghibli_image_{timestamp}.png"
-            GHIBLI_DIR = os.makedirs("ghibli images", exist_ok=True)
-            logger.info(f"Creating directory for images: ghibli images")
             save_path = os.path.join(GHIBLI_DIR, filename)
             logger.info(f"Saving image to: {save_path}")
 
@@ -113,7 +113,9 @@ if __name__ == "__main__":
     config = configparser.ConfigParser()
     config.read('config.ini')
 
-    text_prompt = "a bunny dressed as a tired footballer in a field"
+    text_prompt = """Image described: A young man, approximately 20 years old, of South Asian ethnicity, is the focus. He's around 5'8", with a lean build and an oval facial structure. His medium brown skin is complemented by dark, slightly curly hair styled upwards.  His dark brown eyes widen slightly in a focused expression as he eats. He wears a black and white horizontally striped cotton polo shirt, seemingly casual. His hands hold a fork, bringing food to his mouth; his posture is slightly hunched forward, facing the camera at a 45° angle.  He appears engrossed in his meal, conveying a sense of enjoyment.
+
+The background is a dimly lit restaurant booth.  Dark brown leather seating contrasts with beige textured wall paneling. A dark wooden table holds a large, sizzling stone plate filled with a colorful mix of meat, vegetables (peas, green beans, spinach), and fried items. Warm, soft lighting accentuates the steam rising from the food. The overall mood is intimate and warm. The image style is photorealistic, with a slightly soft focus, and has a high resolution feel. There are no text overlays or visual effects."""
     print("Generating Ghibli image...")
     saved_image_path = generate_ghibli_from_text(text_prompt)
     if saved_image_path:

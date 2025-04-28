@@ -13,11 +13,25 @@
 - Integrate feature for text to ghibli generation:
 to_ghibli, main.py, app.py to be updated for 2 options
 
-- Add tags on bottom of sticker
-
-- REST API and Streamlit
-
 - Grafana-Prometheus health tracker
 
+- Wandb
+
+- Dockerfile -> Docker compose -> Airflow
+
+- Status tracker for frontend
+
+- airflow, wandb expose on frontend
+
+- feedback loop for text to image improvements
+
+- test cases
+
+- user manuals, reports
+
+- demo video
+
 Bonus:
+- REST API and Streamlit - maybe
+- data drift ???
 - AI Agent to send the sticker to self in WhatsApp
