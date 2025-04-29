@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-/.venv-win
-/.venv
-/data
-config.ini
-=======
 /.venv
 /.venv-win
 /data
+src/__pycache__
 config.ini
->>>>>>> rollback-to-stable
 credentials.txt
