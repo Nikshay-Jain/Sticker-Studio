@@ -1,6 +1,5 @@
 /.venv-win
 /.venv
-/.venv-win
 /data
 config.ini
 credentials.txt
