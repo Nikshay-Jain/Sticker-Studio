@@ -1,0 +1,50 @@
+2025-04-29 22:45:32 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:45:34 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:45:35 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:45:37 - WARNING - From C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\.venv-win\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2025-04-29 22:45:56 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:45:59 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:45:59 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:46:09 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:46:13 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:46:13 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:46:14 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:46:15 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:46:19 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:46:19 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:46:19 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:46:19 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:46:20 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:46:23 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:46:23 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:46:23 - INFO - Generating image from text: 'Asians eating rice'
+2025-04-29 22:46:29 - ERROR - Image generation from text failed.
+2025-04-29 22:47:10 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:47:13 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:47:13 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:47:19 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:47:22 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:47:22 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:47:31 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:47:34 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:47:34 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:47:38 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:47:38 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:47:40 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:47:40 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:47:40 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:47:40 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:47:41 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:47:44 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:47:44 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:47:44 - INFO - Generating image from text: 'asians eating rice'
+2025-04-29 22:47:48 - ERROR - Image generation from text failed.
+2025-04-29 22:48:17 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:48:20 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:48:20 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:48:22 - INFO - === AI Sticker Studio started ===
+2025-04-29 22:48:26 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 22:48:26 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 22:48:26 - INFO - Generating image from text: 'pandas eating bamboo in zoo'
+2025-04-29 22:48:29 - ERROR - Image generation from text failed.
