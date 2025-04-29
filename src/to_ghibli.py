@@ -1,7 +1,7 @@
 from datetime import datetime
-import os, json, logging, requests, configparser
+import io, os, json, logging, requests, configparser, hashlib, PIL.Image
 
-def generate_ghibli_from_text(text, log_filename=None):
+def generate_ghibli_from_text(prompt, log_filename=None):
     """
     Generates a Ghibli-style image using the Modelslab API,
     downloads the image, saves it locally, and returns the local file path.
@@ -33,8 +33,6 @@ def generate_ghibli_from_text(text, log_filename=None):
         logger.addHandler(handler)
 
     url = "https://modelslab.com/api/v6/realtime/text2img"
-    ghibli = "Draw in the beutiful, handpainted style of Studio Ghibli. Lush environments, soft lighting, characterfule designs."
-    prompt = ghibli + text
 
     config = configparser.ConfigParser()
     config.read('config.ini')
@@ -105,39 +103,12 @@ def generate_ghibli_from_text(text, log_filename=None):
         logger.error(f"An unexpected error occurred: {e}")
         return None
 
-if __name__ == "__main__":
-    config = configparser.ConfigParser()
-    config.read('config.ini')
-
-    text_prompt = """Image described: A young man, approximately 20 years old, of South Asian ethnicity, is the focus. He's around 5'8", with a lean build and an oval facial structure. His medium brown skin is complemented by dark, slightly curly hair styled upwards.  His dark brown eyes widen slightly in a focused expression as he eats. He wears a black and white horizontally striped cotton polo shirt, seemingly casual. His hands hold a fork, bringing food to his mouth; his posture is slightly hunched forward, facing the camera at a 45° angle.  He appears engrossed in his meal, conveying a sense of enjoyment.
-
-The background is a dimly lit restaurant booth.  Dark brown leather seating contrasts with beige textured wall paneling. A dark wooden table holds a large, sizzling stone plate filled with a colorful mix of meat, vegetables (peas, green beans, spinach), and fried items. Warm, soft lighting accentuates the steam rising from the food. The overall mood is intimate and warm. The image style is photorealistic, with a slightly soft focus, and has a high resolution feel. There are no text overlays or visual effects."""
-    print("Generating Ghibli image...")
-    saved_image_path = generate_ghibli_from_text(text_prompt)
-    if saved_image_path:
-        print(f"The saved Ghibli image path is: {saved_image_path}")
-
-
-
-
-
-import PIL.Image
-import io, os
-import requests
-import configparser
-import hashlib
-import logging
 
 # --- Configuration File Setup ---
 CONFIG_FILE = "config.ini"
 API_KEY_SECTION = "stability"
 API_KEY_OPTION = "api_key"
 OUTPUT_DIR = "ghibli images"
-
-# We won't use basicConfig here initially, as we want to configure
-# logging *within* the function based on the provided file path.
-# logging.basicConfig(level=logging.INFO,
-#                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Get a logger for this module.
 logger = logging.getLogger(__name__)
@@ -353,7 +324,10 @@ def generate_and_save_ghibli_image(description, log_filepath=None): # <-- Added 
         else:
             logger.error(f"Stability AI API call failed. Status code: {response.status_code}")
             logger.error(f"Response body: {response.text}")
-            return None # API call failed
+            logger.info("Trying with ModelsLab API as a fallback...")
+
+            # Fallback to ModelsLab API if the first call fails
+            return generate_ghibli_from_text(prompt_text, log_filename=log_filepath)
 
     except requests.exceptions.RequestException as e:
         logger.error(f"Network or request error during Stability AI API call: {e}")
@@ -369,5 +343,5 @@ def generate_and_save_ghibli_image(description, log_filepath=None): # <-- Added 
         # consume resources.
         if logger.hasHandlers():
              for handler in logger.handlers:
-                 handler.close() # Close the handler's resources (like file handles)
-             logger.handlers.clear() # Remove handlers from the logger
+                 handler.close()            # Close the handler's resources (like file handles)
+             logger.handlers.clear()        # Remove handlers from the logger
