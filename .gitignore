@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 /.venv-win
 /.venv
 /data
 config.ini
+=======
+/.venv
+/.venv-win
+/data
+config.ini
+>>>>>>> rollback-to-stable
 credentials.txt
