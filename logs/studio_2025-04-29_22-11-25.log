@@ -1,0 +1,10 @@
+2025-04-29 22:11:26,148 - INFO - Logging output directed to file: logs\studio_2025-04-29_22-11-25.log
+2025-04-29 22:11:26,149 - INFO - Attempting to generate Ghibli image for description: 'pigs all around'
+2025-04-29 22:11:26,149 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. pigs all around...'
+2025-04-29 22:11:26,149 - INFO - Sending request to Stability AI...
+2025-04-29 22:11:32,098 - ERROR - Stability AI API call failed. Status code: 402
+2025-04-29 22:11:32,098 - ERROR - Response body: {"errors":["You lack sufficient credits to make this request.  Please purchase more credits at https://platform.stability.ai/account/credits and try again."],"id":"f5039a31e95b77be29979bd50d395982","name":"payment_required"}
+2025-04-29 22:11:32,115 - INFO - Trying with ModelsLab API as a fallback...
+2025-04-29 22:11:32,115 - INFO - Sending request to Modelslab API with prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. pigs all around'
+2025-04-29 22:11:33,054 - INFO - Modelslab API request successful.
+2025-04-29 22:11:33,054 - WARNING - Image URL not found in the response.
