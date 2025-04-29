@@ -1,0 +1,8 @@
+2025-04-29 11:58:57,200 - INFO - Logging output directed to file: logs/studio_2025-04-29_11-58-53.log
+2025-04-29 11:58:57,201 - INFO - Attempting to generate Ghibli image for description: 'a boy punished by teacher to kneel down'
+2025-04-29 11:58:57,213 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. a boy punished by teacher...'
+2025-04-29 11:58:57,214 - INFO - Sending request to Stability AI...
+2025-04-29 11:59:16,656 - INFO - Stability AI API call successful.
+2025-04-29 11:59:17,031 - INFO - Image data received and opened successfully.
+2025-04-29 11:59:17,032 - INFO - Saving image to directory 'ghibli images'...
+2025-04-29 11:59:17,568 - INFO - Process complete. Image saved to: ghibli images/028bcacb213416aa18e7223a9088b23f1344d1b7f8b4dfabea55c840cea00536.png

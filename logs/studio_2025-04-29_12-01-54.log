@@ -1,0 +1,8 @@
+2025-04-29 12:02:00,777 - INFO - Logging output directed to file: logs/studio_2025-04-29_12-01-54.log
+2025-04-29 12:02:00,780 - INFO - Attempting to generate Ghibli image for description: 'Guy hanging upside down the tree branch whiuch his legs resting on tree branch'
+2025-04-29 12:02:00,793 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. Guy hanging upside down t...'
+2025-04-29 12:02:00,794 - INFO - Sending request to Stability AI...
+2025-04-29 12:02:17,303 - INFO - Stability AI API call successful.
+2025-04-29 12:02:17,306 - INFO - Image data received and opened successfully.
+2025-04-29 12:02:17,308 - INFO - Saving image to directory 'ghibli images'...
+2025-04-29 12:02:18,081 - INFO - Process complete. Image saved to: ghibli images/31ea153f759e3ea0ae4aa0e9d28c579a5029bd9e99b2d34f18b6d13fb18ad831.png

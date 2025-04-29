@@ -1,0 +1,8 @@
+2025-04-29 11:36:58,293 - INFO - Logging output directed to file: logs/studio_2025-04-29_11-36-54.log
+2025-04-29 11:36:58,294 - INFO - Attempting to generate Ghibli image for description: 'A cartoon cow in the style of studio ghibli animation that is jumping towards the moon from india.'
+2025-04-29 11:36:58,297 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. A cartoon cow in the styl...'
+2025-04-29 11:36:58,298 - INFO - Sending request to Stability AI...
+2025-04-29 11:37:16,863 - INFO - Stability AI API call successful.
+2025-04-29 11:37:17,668 - INFO - Image data received and opened successfully.
+2025-04-29 11:37:17,670 - INFO - Saving image to directory 'ghibli images'...
+2025-04-29 11:37:18,194 - INFO - Process complete. Image saved to: ghibli images/5f7cc9965939b9d549359c2af8f304e6559b4301b80c49fd0d464e9307cce978.png

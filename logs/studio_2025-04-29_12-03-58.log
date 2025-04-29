@@ -1,0 +1,6 @@
+2025-04-29 12:04:05,880 - INFO - Logging output directed to file: logs/studio_2025-04-29_12-03-58.log
+2025-04-29 12:04:05,882 - INFO - Attempting to generate Ghibli image for description: 'Beautiful nude girl '
+2025-04-29 12:04:05,895 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. Beautiful nude girl ...'
+2025-04-29 12:04:05,896 - INFO - Sending request to Stability AI...
+2025-04-29 12:04:09,394 - ERROR - Stability AI API call failed. Status code: 403
+2025-04-29 12:04:09,396 - ERROR - Response body: {"errors":["Your request was flagged by our content moderation system, as a result your request was denied and you were not charged."],"id":"f34f12e653c3fcac1a88b5e8fc835392","name":"content_moderation"}
