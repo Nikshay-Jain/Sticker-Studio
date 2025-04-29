@@ -1,0 +1,10 @@
+2025-04-29 20:31:23,026 - INFO - Logging output directed to file: logs\studio_2025-04-29_20-31-21.log
+2025-04-29 20:31:23,026 - INFO - Attempting to generate Ghibli image for description: 'Tiger and lion fighting'
+2025-04-29 20:31:23,026 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. Tiger and lion fighting...'
+2025-04-29 20:31:23,026 - INFO - Sending request to Stability AI...
+2025-04-29 20:31:25,989 - ERROR - Stability AI API call failed. Status code: 402
+2025-04-29 20:31:25,997 - ERROR - Response body: {"errors":["You lack sufficient credits to make this request.  Please purchase more credits at https://platform.stability.ai/account/credits and try again."],"id":"a235f84fb2628296c00064d4e67bb9b2","name":"payment_required"}
+2025-04-29 20:31:25,999 - INFO - Trying with ModelsLab API as a fallback...
+2025-04-29 20:31:26,002 - INFO - Sending request to Modelslab API with prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. Tiger and lion fighting'
+2025-04-29 20:31:27,128 - INFO - Modelslab API request successful.
+2025-04-29 20:31:27,128 - WARNING - Image URL not found in the response.

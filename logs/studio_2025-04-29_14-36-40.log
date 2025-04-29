@@ -1,0 +1,42 @@
+2025-04-29 14:36:40 - INFO - === AI Sticker Studio started ===
+2025-04-29 14:36:44 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 14:36:44 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 14:37:44 - INFO - === AI Sticker Studio started ===
+2025-04-29 14:37:46 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 14:37:46 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 14:37:57 - INFO - === AI Sticker Studio started ===
+2025-04-29 14:37:58 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 14:37:58 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 14:38:01 - INFO - === AI Sticker Studio started ===
+2025-04-29 14:38:02 - INFO - === AI Sticker Studio started ===
+2025-04-29 14:38:04 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 14:38:04 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 14:38:04 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 14:38:04 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 14:38:10 - INFO - === AI Sticker Studio started ===
+2025-04-29 14:38:11 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 14:38:11 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 14:38:17 - INFO - === AI Sticker Studio started ===
+2025-04-29 14:38:18 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 14:38:18 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 14:38:18 - INFO - Generating image from text: 'Horse on a goat'
+2025-04-29 14:38:28 - INFO - Image successfully generated from text: ghibli images/ghibli_image_2025-04-29_14-38-28.png
+2025-04-29 14:38:28 - INFO - Using generated image directly for segmentation.
+2025-04-29 14:38:28 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "/mnt/c/Users/niksh/Desktop/Ghibli-Sticker-Studio/src/main.py", line 133, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 14:43:26 - INFO - === AI Sticker Studio started ===
+2025-04-29 14:43:27 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 14:43:27 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 14:43:27 - INFO - Generating image from text: 'Horse on a goat'
+2025-04-29 14:43:40 - ERROR - Error in processing sticker from text input: stat: path should be string, bytes, os.PathLike or integer, not NoneType
+Traceback (most recent call last):
+  File "/mnt/c/Users/niksh/Desktop/Ghibli-Sticker-Studio/src/main.py", line 121, in process_sticker_from_text
+    if not os.path.exists(generated_img_path):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen genericpath>", line 19, in exists
+TypeError: stat: path should be string, bytes, os.PathLike or integer, not NoneType
+2025-04-29 14:45:03 - INFO - === AI Sticker Studio closed ===

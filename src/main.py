@@ -116,6 +116,8 @@ def process_sticker_from_text(text_for_image, text_input, color, selected_font, 
         # generate_ghibli_from_text should save the image to GENERATED_IMG_DIR and return its path
         generated_img_path = generate_and_save_ghibli_image(text_for_image, log_filename)
 
+        print(generated_img_path)
+        
         if not os.path.exists(generated_img_path):
             logging.error("Image generation from text failed.")
             return None

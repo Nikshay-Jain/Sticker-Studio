@@ -65,6 +65,8 @@ def generate_ghibli_from_text(prompt, log_filename=None):
         logger.info("Modelslab API request successful.")
 
         data = response.json()
+        print(data)
+        
         if data.get('output'):
             image_url = data['output'][0]
             logger.info(f"Generated Image URL: {image_url}")

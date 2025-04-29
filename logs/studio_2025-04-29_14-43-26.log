@@ -1,0 +1,10 @@
+2025-04-29 14:43:27,994 - INFO - Logging output directed to file: logs/studio_2025-04-29_14-43-26.log
+2025-04-29 14:43:27,995 - INFO - Attempting to generate Ghibli image for description: 'Horse on a goat'
+2025-04-29 14:43:28,001 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. Horse on a goat...'
+2025-04-29 14:43:28,001 - INFO - Sending request to Stability AI...
+2025-04-29 14:43:34,560 - ERROR - Stability AI API call failed. Status code: 402
+2025-04-29 14:43:34,561 - ERROR - Response body: {"errors":["You lack sufficient credits to make this request.  Please purchase more credits at https://platform.stability.ai/account/credits and try again."],"id":"4d518436a4f6dbf28c2e507093caa23c","name":"payment_required"}
+2025-04-29 14:43:34,563 - INFO - Trying with ModelsLab API as a fallback...
+2025-04-29 14:43:34,571 - INFO - Sending request to Modelslab API with prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. Horse on a goat'
+2025-04-29 14:43:40,150 - INFO - Modelslab API request successful.
+2025-04-29 14:43:40,152 - WARNING - Image URL not found in the response.
