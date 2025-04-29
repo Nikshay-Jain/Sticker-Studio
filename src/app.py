@@ -16,11 +16,54 @@ log_filename = setup_logging()
 is_normal_classifier = load_classifier_model()
 
 # Streamlit UI
+# --- Theme-Aware Styling ---
+st.markdown(
+    """
+    <style>
+    :root, html, body, .stApp {
+        background-color: black !important;
+    }
+    .stRadio > div {
+        flex-direction: row !important;
+        justify-content: center;
+    }
+    .stButton > button {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        border-radius: 8px;
+        padding: 0.75em 1.5em;
+        margin-top: 1em;
+    }
+    .stButton > button:hover {
+        background-color: #45a049;
+    }
+    .stTextInput > div > input {
+        font-size: 16px;
+        border-radius: 8px;
+    }
+    .stColorPicker > div {
+        padding-top: 0.5em;
+    }
+    @media (prefers-color-scheme: dark) {
+        .stMarkdown h3 {
+            color: #f0f0f0;
+        }
+    }
+    @media (prefers-color-scheme: light) {
+        .stMarkdown h3 {
+            color: #333333;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 st.title("Sticker Studio 🎨")
 
 # --- Input Method Selection ---
 # Provide two options for the user: upload an image or generate from text.
-option = st.radio("Choose input method:", ("Upload image directly", "Enter text description for generating image"))
+option = st.radio("Choose input method:", ("Upload image directly", "Enter text for Gen-AI images"))
 
 uploaded_file = None
 text_for_image = None    # Variable to hold text input for image generation
@@ -30,7 +73,7 @@ text_for_image = None    # Variable to hold text input for image generation
 if option == "Upload image directly":
     # Input for image upload
     uploaded_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
-elif option == "Enter text description for generating image":
+elif option == "Enter text for Gen-AI images":
     # Input for text-to-image generation
     text_for_image = st.text_input("Enter text to generate an image:")
 
@@ -94,7 +137,7 @@ if st.button("Generate Sticker"):
         elif not text_input:
             st.warning("Please enter text for the sticker caption.")
 
-    elif option == "Enter text description for generating image":
+    elif option == "Enter text for Gen-AI images":
         if text_for_image and text_input:
             # Call the function to process text for image generation
             output_path = process_sticker_from_text(

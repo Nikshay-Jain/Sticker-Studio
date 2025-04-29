@@ -10,18 +10,13 @@
 - Logs at every step in logs/
 
 ## Need to do:
-- Integrate feature for text to ghibli generation:
-to_ghibli, main.py, app.py to be updated for 2 options
-
 - Grafana-Prometheus health tracker
-
-- Wandb
 
 - Dockerfile -> Docker compose -> Airflow
 
 - Status tracker for frontend
 
-- airflow, wandb expose on frontend
+- airflow, wandb/mlflow expose on frontend
 
 - feedback loop for text to image improvements
 

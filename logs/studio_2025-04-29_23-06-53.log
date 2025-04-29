@@ -1,0 +1,9 @@
+2025-04-29 23:06:53 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:06:56 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:06:56 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:06:58 - WARNING - From C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\.venv-win\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2025-04-29 23:07:07 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:07:11 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:07:11 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:09:05 - INFO - === AI Sticker Studio closed ===
