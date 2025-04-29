@@ -81,10 +81,10 @@ def process_sticker_from_image(uploaded_file, text_input, color, selected_font, 
         # Decide which YOLO model to use for segmentation
         if is_image_normal:
             logging.info("Image classified as NORMAL. Using standard YOLO model.")
-            seg_img_path = segmentor(file_path, log_filename, model_type="normal")
+            seg_img_path = segmentor(file_path)
         else:
             logging.info("Image classified as GHIBLI. Using fine-tuned YOLO model.")
-            seg_img_path = segmentor(file_path, log_filename, model_type="ghibli")
+            seg_img_path = segmentor(file_path)
 
         if not os.path.exists(seg_img_path):
             logging.error("Image segmentation failed.")
