@@ -157,25 +157,3 @@ def segmentor(image_path, output_dir="segmented images"):
         print(f"Error saving image as WebP: {e}")
         print("Make sure your Pillow installation supports WebP.")
         return None
-
-# --- How to use the function ---
-if __name__ == "__main__":
-    # Replace with your input and desired output paths
-    input_image_file = "455fc8e4000a3c7ac977ee4c0d484fa20daf559a81d60f3ae719aa7a7303a54a.png"
-    output_directory = "segmented_stickers" # Define an output directory
-
-    # Check if the input file exists before proceeding
-    if not os.path.exists(input_image_file):
-         print(f"Error: Input image not found at {input_image_file}. Please update the path.")
-    else:
-        # Ensure the output directory exists before calling the function
-        if not os.path.exists(output_directory):
-            os.makedirs(output_directory)
-            print(f"Created output directory: {output_directory}")
-
-        saved_file = segment_and_isolate_to_webp(input_image_file, output_directory)
-
-        if saved_file:
-            print(f"\nProcess finished. Output saved to: {saved_file}")
-        else:
-             print("\nProcess failed.")

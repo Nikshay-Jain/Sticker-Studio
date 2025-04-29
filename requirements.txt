@@ -1,5 +1,13 @@
 piexif
-pillow
 streamlit
 tensorflow
 stability-sdk
+scikit-learn
+pillow
+pycocotools
+torch
+torchvision
+torchaudio
+fvcore
+opencv-python
+cython

@@ -12,11 +12,7 @@
 ## Need to do:
 - Grafana-Prometheus health tracker
 
-- Dockerfile -> Docker compose -> Airflow
-
-- Status tracker for frontend
-
-- airflow, wandb/mlflow expose on frontend
+- Dockerfile -> Docker compose
 
 - feedback loop for text to image improvements
 
@@ -24,9 +20,4 @@
 
 - user manuals, reports
 
-- demo video
-
-Bonus:
-- REST API and Streamlit - maybe
 - data drift ???
-- AI Agent to send the sticker to self in WhatsApp
