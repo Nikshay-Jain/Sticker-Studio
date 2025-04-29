@@ -93,11 +93,9 @@
 import os, atexit, logging
 from datetime import datetime
 from tensorflow.keras.models import load_model
-from PIL import Image # Import Image from PIL for image handling
 
 # Import necessary functions, including the one for text-to-image generation
-# Ensure generate_ghibli_from_text exists in your to_ghibli.py file
-from to_ghibli import generate_ghibli_from_image, generate_ghibli_from_text
+from to_ghibli import generate_ghibli_from_text, generate_and_save_ghibli_image
 from segmentor_model import segmentor
 from sticker_generator import conv_to_sticker
 from check_conv_ghibli import is_normal
@@ -118,7 +116,6 @@ def setup_environment():
     os.makedirs(FONTS_DIR, exist_ok=True)
     os.makedirs(LOG_DIR, exist_ok=True)
     os.makedirs(GENERATED_IMG_DIR, exist_ok=True) # Create the new directory for generated images
-
 
 # Setup logging (remains the same)
 def setup_logging():
@@ -160,11 +157,10 @@ def load_classifier_model():
 def process_sticker_from_image(uploaded_file, text_input, color, selected_font, font_files, classifier, log_filename):
     """
     Processes an uploaded image to generate a sticker.
-    Includes optional Ghibli theme conversion based on a classifier.
+    Uses a classifier to decide whether to use standard or fine-tuned YOLO model for segmentation.
     """
     try:
         # Save uploaded image
-        # Using a more robust filename to avoid clashes
         file_path = os.path.join(UPLOAD_DIR, f"{datetime.now().strftime('%Y%m%d%H%M%S')}_{uploaded_file.name}")
         with open(file_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
@@ -172,27 +168,17 @@ def process_sticker_from_image(uploaded_file, text_input, color, selected_font, 
 
         font_filename = font_files[selected_font]
 
-        # Check if needs theme conversion using the classifier
-        # is_normal function should return True if the image is 'normal' and needs conversion
-        img_status = is_normal(file_path, classifier, log_filename)
-        if classifier is not None and img_status:
-            logging.info("Applying Ghibli theme to uploaded image...")
-            # Generate themed image using the imported function
-            # generate_ghibli_from_image should save the themed image and return its path
-            themed_img_path = generate_ghibli_from_image(file_path, log_filename)
-            if not os.path.exists(themed_img_path):
-                 logging.error("Ghibli theme conversion failed for uploaded image.")
-                 # Decide how to handle failure: either return None or proceed with original image
-                 # For now, we'll return None to indicate failure
-                 return None
+        # Classify the image using the provided classifier
+        is_image_normal = is_normal(file_path, classifier, log_filename) if classifier else True
+
+        # Decide which YOLO model to use for segmentation
+        if is_image_normal:
+            logging.info("Image classified as NORMAL. Using standard YOLO model.")
+            seg_img_path = segmentor(file_path, log_filename, model_type="normal")
         else:
-            # Use the original uploaded image if no theme conversion is needed or classifier is not available
-            themed_img_path = file_path
-            logging.info("Skipping Ghibli theme conversion for uploaded image.")
+            logging.info("Image classified as GHIBLI. Using fine-tuned YOLO model.")
+            seg_img_path = segmentor(file_path, log_filename, model_type="ghibli")
 
-
-        # Segment the (potentially themed) image
-        seg_img_path = segmentor(themed_img_path, log_filename)
         if not os.path.exists(seg_img_path):
             logging.error("Image segmentation failed.")
             return None
@@ -206,21 +192,22 @@ def process_sticker_from_image(uploaded_file, text_input, color, selected_font, 
         else:
             logging.error("Sticker generation failed after segmentation.")
             return None
+
     except Exception as e:
         logging.exception(f"Error in processing sticker from uploaded image: {e}")
         return None
 
 # --- New function to process sticker from text input (generates image first) ---
-def process_sticker_from_text(text_for_image, text_input, color, selected_font, font_files, classifier, log_filename):
+def process_sticker_from_text(text_for_image, text_input, color, selected_font, font_files, log_filename):
     """
     Generates an image from text input, then processes it to create a sticker.
     Assumes the generated image is already in a desired style (e.g., Ghibli).
     """
     try:
         logging.info(f"Generating image from text: '{text_for_image}'")
-        # Generate image from text using the imported function
+        
         # generate_ghibli_from_text should save the image to GENERATED_IMG_DIR and return its path
-        generated_img_path = generate_ghibli_from_text(text_for_image, GENERATED_IMG_DIR, log_filename)
+        generated_img_path = generate_and_save_ghibli_image(text_for_image, log_filename)
 
         if not os.path.exists(generated_img_path):
             logging.error("Image generation from text failed.")
@@ -230,20 +217,13 @@ def process_sticker_from_text(text_for_image, text_input, color, selected_font, 
 
         font_filename = font_files[selected_font]
 
-        # For images generated from text, we can often assume they are already in the desired style,
-        # so we might skip the is_normal check and direct theme conversion step that was for uploaded images.
-        # If your generate_ghibli_from_text function sometimes produces non-ghibli images or you want
-        # to apply further styling, you could add a check/conversion here.
-        # For now, we'll use the generated image directly for segmentation.
         themed_img_path = generated_img_path
         logging.info("Using generated image directly for segmentation.")
 
         # Segment the generated image
-        seg_img_path = segmentor(themed_img_path, log_filename)
+        seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
         if not os.path.exists(seg_img_path):
             logging.error("Image segmentation failed after text-to-image generation.")
-            # Clean up the generated image if segmentation fails? (Optional)
-            # os.remove(generated_img_path)
             return None
 
         # Convert the segmented image to a sticker by adding text
@@ -251,9 +231,6 @@ def process_sticker_from_text(text_for_image, text_input, color, selected_font, 
 
         if os.path.exists(output_path):
             logging.info(f"Sticker successfully generated from text-based image: {output_path}")
-            # Clean up the generated and segmented images after successful sticker creation? (Optional)
-            # os.remove(generated_img_path)
-            # os.remove(seg_img_path)
             return output_path
         else:
             logging.error("Sticker generation failed after segmentation (from text-based image).")

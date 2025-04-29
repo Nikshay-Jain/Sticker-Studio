@@ -1,6 +1,6 @@
 import logging
 
-def segmentor(image_path, log_filename):
+def segmentor(image_path, log_filename, model_name="ghibli"):
     """Processes the image and generates a sticker."""
     # Configure logging to use the same file as the Streamlit app
     if log_filename:
