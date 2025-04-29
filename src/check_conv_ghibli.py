@@ -37,19 +37,6 @@ def is_normal(img_path, mobilenet_model, log_filename):
     except Exception as e:
         logging.error(f"Error during image classification: {e}")
         return None
-    
-def to_ghibli(img_path, log_filename):
-    # Configure logging to use the same file
-    if log_filename:
-        logging.basicConfig(
-            filename=log_filename,
-            level=logging.INFO,
-            format="%(asctime)s - %(levelname)s - %(message)s",
-            datefmt="%Y-%m-%d %H:%M:%S"
-        )
-    logging.info(f"Logging configured to file: {log_filename}")
-    
-    return img_path
 
 if __name__ == "__main__":
     # Example usage
@@ -66,7 +53,5 @@ if __name__ == "__main__":
 
     img_path = r"C:\Users\niksh\Desktop\test_01.png"
     is_normal_result = is_normal(img_path, mobilenet_model, log_filename)
-    ghibli_result = to_ghibli(img_path, log_filename)
 
     print(f"Is Normal: {is_normal_result}")
-    print(f"Ghibli Result: {ghibli_result}")

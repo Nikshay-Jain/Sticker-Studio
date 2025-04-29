@@ -1,0 +1,43 @@
+2025-04-29 19:14:15 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:14:17 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:14:17 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:14:52 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:14:58 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:14:58 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:14:59 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:15:00 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:15:03 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:15:03 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:15:03 - ERROR - Error loading classifier model: 'NoneType' object has no attribute 'pop'
+2025-04-29 19:15:05 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:15:09 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:15:09 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:15:09 - INFO - Uploaded file saved: uploads/20250429191509_655985e968ad9733d007fa90bcf549243e1bcde0c65a80d77d92eafc2f84360a.png
+2025-04-29 19:15:11 - INFO - Image classified as GHIBLI. Using fine-tuned YOLO model.
+2025-04-29 19:15:12 - INFO - Successfully created sticker: stickers/sticker_pid_19-15-11.webp
+2025-04-29 19:15:12 - INFO - Sticker successfully generated from uploaded image: stickers/sticker_pid_19-15-11.webp
+2025-04-29 19:15:28 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:15:34 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:15:34 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:15:54 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:15:56 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:15:56 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:15:59 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:16:01 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:16:01 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:16:01 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:16:03 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:16:03 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:16:05 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:16:11 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:16:11 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:16:11 - INFO - Generating image from text: 'Boys group of 4 having fun while drinking tea'
+2025-04-29 19:16:23 - INFO - Image successfully generated from text: ghibli images/ghibli_image_2025-04-29_19-16-22.png
+2025-04-29 19:16:23 - INFO - Using generated image directly for segmentation.
+2025-04-29 19:16:23 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "/mnt/c/Users/niksh/Desktop/Ghibli-Sticker-Studio/src/main.py", line 131, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 19:17:48 - INFO - === AI Sticker Studio closed ===

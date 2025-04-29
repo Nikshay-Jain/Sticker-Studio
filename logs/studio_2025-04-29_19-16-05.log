@@ -1,0 +1,14 @@
+2025-04-29 19:16:11,561 - INFO - Logging output directed to file: logs/studio_2025-04-29_19-16-05.log
+2025-04-29 19:16:11,562 - INFO - Attempting to generate Ghibli image for description: 'Boys group of 4 having fun while drinking tea'
+2025-04-29 19:16:11,571 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. Boys group of 4 having fu...'
+2025-04-29 19:16:11,572 - INFO - Sending request to Stability AI...
+2025-04-29 19:16:16,239 - ERROR - Stability AI API call failed. Status code: 402
+2025-04-29 19:16:16,247 - ERROR - Response body: {"errors":["You lack sufficient credits to make this request.  Please purchase more credits at https://platform.stability.ai/account/credits and try again."],"id":"08a20449dce816fc4b3fceba39ec2b15","name":"payment_required"}
+2025-04-29 19:16:16,249 - INFO - Trying with ModelsLab API as a fallback...
+2025-04-29 19:16:16,262 - INFO - Sending request to Modelslab API with prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. Boys group of 4 having fun while drinking tea'
+2025-04-29 19:16:22,387 - INFO - Modelslab API request successful.
+2025-04-29 19:16:22,389 - INFO - Generated Image URL: https://modelslab-bom.s3.amazonaws.com/modelslab/6a9114e3-da43-4ead-aa5f-ed08d9848ad2-0.jpg
+2025-04-29 19:16:22,399 - INFO - Creating directory for images: ghibli images
+2025-04-29 19:16:22,401 - INFO - Saving image to: ghibli images/ghibli_image_2025-04-29_19-16-22.png
+2025-04-29 19:16:22,891 - INFO - Image download successful.
+2025-04-29 19:16:23,017 - INFO - Image saved successfully to: ghibli images/ghibli_image_2025-04-29_19-16-22.png

@@ -13,7 +13,6 @@ UPLOAD_DIR = "uploads"
 OUTPUT_DIR = "stickers"
 FONTS_DIR = "fonts"
 LOG_DIR = "logs"
-GENERATED_IMG_DIR = "generated_images" # New directory to store images generated from text
 
 _exit_logged = False
 
@@ -24,8 +23,7 @@ def setup_environment():
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     os.makedirs(FONTS_DIR, exist_ok=True)
     os.makedirs(LOG_DIR, exist_ok=True)
-    os.makedirs(GENERATED_IMG_DIR, exist_ok=True) # Create the new directory for generated images
-
+    
 # Setup logging (remains the same)
 def setup_logging():
     global _exit_logged

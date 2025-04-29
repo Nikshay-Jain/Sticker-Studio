@@ -1,0 +1,89 @@
+2025-04-29 19:03:53 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:03:56 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:03:56 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:04:56 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:04:59 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:04:59 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:05:19 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:05:23 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:05:23 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:05:23 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:05:25 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:05:25 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:05:26 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:05:29 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:05:29 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:05:29 - INFO - Generating image from text: 'Boy and girl having fun while drinking tea'
+2025-04-29 19:05:43 - INFO - Image successfully generated from text: ghibli images/ghibli_image_2025-04-29_19-05-43.png
+2025-04-29 19:05:43 - INFO - Using generated image directly for segmentation.
+2025-04-29 19:05:44 - INFO - Successfully created sticker: stickers/sticker_hi_19-05-44.webp
+2025-04-29 19:05:44 - INFO - Sticker successfully generated from text-based image: stickers/sticker_hi_19-05-44.webp
+2025-04-29 19:05:58 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:06:01 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:06:01 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:06:08 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:06:13 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:06:13 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:06:17 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:06:17 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:06:23 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:06:23 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:06:23 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:06:24 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:06:25 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:06:28 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:06:28 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:06:28 - INFO - Uploaded file saved: uploads/20250429190628_ghibli_image_2025-04-30_00-13-55.png
+2025-04-29 19:06:30 - INFO - Image classified as NORMAL. Using standard YOLO model.
+2025-04-29 19:06:30 - ERROR - Error in processing sticker from uploaded image: segmentor() got an unexpected keyword argument 'model_type'
+Traceback (most recent call last):
+  File "/mnt/c/Users/niksh/Desktop/Ghibli-Sticker-Studio/src/main.py", line 86, in process_sticker_from_image
+    logging.info("Image classified as GHIBLI. Using fine-tuned YOLO model.")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_type'
+2025-04-29 19:07:09 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:07:12 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:07:12 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:07:12 - INFO - Uploaded file saved: uploads/20250429190712_ghibli_image_2025-04-30_00-13-55.png
+2025-04-29 19:07:13 - INFO - Image classified as NORMAL. Using standard YOLO model.
+2025-04-29 19:07:13 - ERROR - Error in processing sticker from uploaded image: segmentor() got an unexpected keyword argument 'model_type'
+Traceback (most recent call last):
+  File "/mnt/c/Users/niksh/Desktop/Ghibli-Sticker-Studio/src/main.py", line 86, in process_sticker_from_image
+    logging.info("Image classified as GHIBLI. Using fine-tuned YOLO model.")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_type'
+2025-04-29 19:08:14 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:08:17 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:08:17 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:08:38 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:08:41 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:08:41 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:08:43 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:08:44 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:08:50 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:08:50 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:08:50 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:08:51 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:08:51 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:08:55 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:08:55 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:08:55 - INFO - Uploaded file saved: uploads/20250429190855_ghibli_image_2025-04-28_16-31-14.png
+2025-04-29 19:08:56 - INFO - Image classified as NORMAL. Using standard YOLO model.
+2025-04-29 19:08:56 - ERROR - Error in processing sticker from uploaded image: segmentor() got an unexpected keyword argument 'model_type'
+Traceback (most recent call last):
+  File "/mnt/c/Users/niksh/Desktop/Ghibli-Sticker-Studio/src/main.py", line 86, in process_sticker_from_image
+    logging.info("Image classified as GHIBLI. Using fine-tuned YOLO model.")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_type'
+2025-04-29 19:09:54 - INFO - === AI Sticker Studio started ===
+2025-04-29 19:09:58 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 19:09:58 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 19:09:58 - INFO - Uploaded file saved: uploads/20250429190958_ghibli_image_2025-04-28_16-31-14.png
+2025-04-29 19:09:59 - INFO - Image classified as NORMAL. Using standard YOLO model.
+2025-04-29 19:09:59 - ERROR - Error in processing sticker from uploaded image: segmentor() got an unexpected keyword argument 'model_type'
+Traceback (most recent call last):
+  File "/mnt/c/Users/niksh/Desktop/Ghibli-Sticker-Studio/src/main.py", line 86, in process_sticker_from_image
+    logging.info("Image classified as GHIBLI. Using fine-tuned YOLO model.")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_type'
+2025-04-29 19:11:38 - INFO - === AI Sticker Studio closed ===
