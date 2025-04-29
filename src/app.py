@@ -119,8 +119,8 @@ if st.button("Generate Sticker"):
             st.download_button(
                 label="Download Sticker",
                 data=file,
-                file_name="sticker.png",
-                mime="image/png"
+                file_name="sticker.webp",
+                mime="image/webp"
             )
     elif output_path is None:
          # Display an error if processing failed and output_path is None

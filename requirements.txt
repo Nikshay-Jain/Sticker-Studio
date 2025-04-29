@@ -1,4 +1,5 @@
 piexif
 pillow
-tensorflow
 streamlit
+tensorflow
+stability-sdk
