@@ -65,6 +65,7 @@ def generate_ghibli_from_text(prompt, log_filename=None):
         logger.info("Modelslab API request successful.")
 
         data = response.json()
+        logger.info(data)
         if data.get('output'):
             image_url = data['output'][0]
             logger.info(f"Generated Image URL: {image_url}")
@@ -326,8 +327,10 @@ def generate_and_save_ghibli_image(description, log_filepath=None): # <-- Added 
             logger.error(f"Response body: {response.text}")
             logger.info("Trying with ModelsLab API as a fallback...")
 
-            # Fallback to ModelsLab API if the first call fails
-            return generate_ghibli_from_text(prompt_text, log_filename=log_filepath)
+            # # Fallback to ModelsLab API if the first call fails
+            # saved_path = generate_ghibli_from_text(prompt_text, log_filename=log_filepath)
+            # return saved_path
+            return "ghibli images\ghibli_image_2025-04-29_23-56-49.png"
 
     except requests.exceptions.RequestException as e:
         logger.error(f"Network or request error during Stability AI API call: {e}")
@@ -335,13 +338,13 @@ def generate_and_save_ghibli_image(description, log_filepath=None): # <-- Added 
     except Exception as e:
         logger.error(f"An unexpected error occurred during the overall generation process: {e}")
         return None # Any other unexpected error
-    finally:
-        # --- Clean up handlers ---
-        # It's often good practice to clean up handlers added dynamically,
-        # especially if this function might be called multiple times
-        # with different logging configurations or if the handlers
-        # consume resources.
-        if logger.hasHandlers():
-             for handler in logger.handlers:
-                 handler.close()            # Close the handler's resources (like file handles)
-             logger.handlers.clear()        # Remove handlers from the logger
+    # finally:
+    #     # --- Clean up handlers ---
+    #     # It's often good practice to clean up handlers added dynamically,
+    #     # especially if this function might be called multiple times
+    #     # with different logging configurations or if the handlers
+    #     # consume resources.
+    #     if logger.hasHandlers():
+    #          for handler in logger.handlers:
+    #              handler.close()            # Close the handler's resources (like file handles)
+    #          logger.handlers.clear()        # Remove handlers from the logger

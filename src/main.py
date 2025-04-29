@@ -114,12 +114,25 @@ def process_sticker_from_text(text_for_image, text_input, color, selected_font, 
         logging.info(f"Generating image from text: '{text_for_image}'")
         
         # generate_ghibli_from_text should save the image to GENERATED_IMG_DIR and return its path
+        logging.info(f"Before generated image")
         generated_img_path = generate_and_save_ghibli_image(text_for_image, log_filename)
-        
-        if not generated_img_path or not os.path.exists(generated_img_path):
-            logging.error("Image generation from text failed.")
+        logging.info(f"Generated image path: {generated_img_path}")
+        if generated_img_path is None:
+            logging.error("Image generation returned None.")
+            return None
+        elif not os.path.exists(generated_img_path):
+            logging.error(f"Generated path does not exist: {generated_img_path}")
             return None
 
+        try:
+            logging.info(f"Before segmented image path")
+            seg_img_path = segmentor(generated_img_path, log_filename)
+            logging.info(f"Segmented image path: {seg_img_path}")
+
+        except Exception as e:
+            logging.exception(f"Segmentation crashed: {e}")
+            return None
+        
         logging.info(f"Image successfully generated from text: {generated_img_path}")
 
         font_filename = font_files[selected_font]

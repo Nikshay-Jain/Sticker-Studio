@@ -1,0 +1,245 @@
+2025-04-29 23:28:56 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:28:59 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:29:00 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:29:03 - WARNING - From C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\.venv-win\Lib\site-packages\keras\src\backend\common\global_state.py:82: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+2025-04-29 23:29:17 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:29:20 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:29:20 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:29:23 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:29:24 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:29:29 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:29:29 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:29:29 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:29:29 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:29:29 - INFO - Uploaded file saved: uploads\20250429232929_5f7cc9965939b9d549359c2af8f304e6559b4301b80c49fd0d464e9307cce978.png
+2025-04-29 23:29:33 - INFO - Image classified as GHIBLI. Using fine-tuned YOLO model.
+2025-04-29 23:29:34 - INFO - Successfully created sticker: stickers\sticker_Lop_23-29-33.webp
+2025-04-29 23:29:34 - INFO - Sticker successfully generated from uploaded image: stickers\sticker_Lop_23-29-33.webp
+2025-04-29 23:29:44 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:29:48 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:29:48 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:30:00 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:30:01 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:30:01 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:30:07 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:30:07 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:30:07 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:30:07 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:30:07 - INFO - Generating image from text: 'pandas on trees, eating bamboos'
+2025-04-29 23:30:07 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:30:07 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:30:12 - ERROR - Image generation from text failed.
+2025-04-29 23:30:36 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:30:36 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:30:41 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:30:41 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:30:41 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:30:41 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:30:41 - INFO - Generating image from text: 'tiger eating bamboos'
+2025-04-29 23:30:45 - ERROR - Image generation from text failed.
+2025-04-29 23:32:23 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:32:26 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:32:26 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:32:26 - INFO - Generating image from text: 'tiger eating bamboos'
+2025-04-29 23:32:30 - ERROR - Image generation from text failed.
+2025-04-29 23:33:14 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:33:16 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:33:16 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:33:16 - INFO - Generating image from text: 'tiger eating bamboos'
+2025-04-29 23:33:20 - ERROR - Image generation from text failed.
+2025-04-29 23:36:38 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:36:40 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:36:40 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:36:40 - INFO - Generating image from text: 'tiger eating bamboos'
+2025-04-29 23:36:54 - INFO - Image successfully generated from text: ghibli images\ghibli_image_2025-04-29_23-36-53.png
+2025-04-29 23:36:54 - INFO - Using generated image directly for segmentation.
+2025-04-29 23:36:54 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 131, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 23:38:41 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:38:43 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:38:43 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:38:43 - INFO - Generating image from text: 'tiger eating bamboos'
+2025-04-29 23:38:57 - INFO - Image successfully generated from text: ghibli images\ghibli_image_2025-04-29_23-38-55.png
+2025-04-29 23:38:57 - INFO - Using generated image directly for segmentation.
+2025-04-29 23:38:57 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 131, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 23:41:00 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:41:02 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:41:02 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:41:02 - INFO - Generating image from text: 'tiger eating bamboos'
+2025-04-29 23:41:14 - INFO - Generated image path: ghibli images\ghibli_image_2025-04-29_23-41-13.png
+2025-04-29 23:41:14 - INFO - Image successfully generated from text: ghibli images\ghibli_image_2025-04-29_23-41-13.png
+2025-04-29 23:41:14 - INFO - Using generated image directly for segmentation.
+2025-04-29 23:41:14 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 132, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 23:43:26 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:43:28 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:43:28 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:43:28 - INFO - Generating image from text: 'tiger eating bamboos'
+2025-04-29 23:43:39 - INFO - Image successfully generated from text: ghibli images\ghibli_image_2025-04-29_23-43-38.png
+2025-04-29 23:43:39 - INFO - Using generated image directly for segmentation.
+2025-04-29 23:43:39 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 132, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 23:45:19 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:45:21 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:45:21 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:45:21 - INFO - Generating image from text: 'tiger eating bamboos'
+2025-04-29 23:45:34 - INFO - Image successfully generated from text: None
+2025-04-29 23:45:34 - INFO - Using generated image directly for segmentation.
+2025-04-29 23:45:34 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 132, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 23:46:12 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:46:15 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:46:15 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:46:16 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:46:19 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:46:19 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:46:22 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:46:23 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:46:28 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:46:28 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:46:28 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:46:28 - INFO - Generating image from text: 'tiger roaring'
+2025-04-29 23:46:28 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:46:40 - INFO - Image successfully generated from text: ghibli images\ghibli_image_2025-04-29_23-46-39.png
+2025-04-29 23:46:40 - INFO - Using generated image directly for segmentation.
+2025-04-29 23:46:40 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 132, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 23:50:24 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:50:25 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:50:25 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:50:25 - INFO - Generating image from text: 'tiger roaring'
+2025-04-29 23:50:37 - ERROR - Segmentation crashed: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 127, in process_sticker_from_text
+    seg_img_path = segmentor(generated_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 23:51:40 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:51:42 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:51:42 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:51:42 - INFO - Generating image from text: 'tiger roaring'
+2025-04-29 23:51:53 - INFO - Image successfully generated from text: ghibli images\ghibli_image_2025-04-29_23-51-52.png
+2025-04-29 23:51:53 - INFO - Using generated image directly for segmentation.
+2025-04-29 23:51:53 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 139, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 23:53:06 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:53:09 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:53:09 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:53:09 - INFO - Generating image from text: 'tiger roaring'
+2025-04-29 23:53:30 - INFO - Segmented image path: ghibli images\ghibli_image_2025-04-29_23-53-28.png
+2025-04-29 23:53:30 - INFO - Image successfully generated from text: ghibli images\ghibli_image_2025-04-29_23-53-28.png
+2025-04-29 23:53:30 - INFO - Using generated image directly for segmentation.
+2025-04-29 23:53:30 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 141, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 23:56:36 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:56:37 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:56:37 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:56:37 - INFO - Generating image from text: 'tiger roaring'
+2025-04-29 23:56:50 - INFO - Segmenting image: ghibli images\ghibli_image_2025-04-29_23-56-49.png
+2025-04-29 23:56:50 - INFO - Segmented image path: ghibli images\ghibli_image_2025-04-29_23-56-49.png
+2025-04-29 23:56:50 - INFO - Image successfully generated from text: ghibli images\ghibli_image_2025-04-29_23-56-49.png
+2025-04-29 23:56:50 - INFO - Using generated image directly for segmentation.
+2025-04-29 23:56:50 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 141, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-29 23:58:04 - INFO - === AI Sticker Studio started ===
+2025-04-29 23:58:06 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 23:58:06 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 23:58:06 - INFO - Generating image from text: 'tiger roaring'
+2025-04-29 23:58:08 - ERROR - Image generation returned None.
+2025-04-29 23:59:59 - INFO - === AI Sticker Studio started ===
+2025-04-30 00:00:00 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-30 00:00:00 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-30 00:00:00 - INFO - Generating image from text: 'tiger roaring'
+2025-04-30 00:00:05 - INFO - Before segmented image path
+2025-04-30 00:00:05 - INFO - Segmented image path: ghibli images\ghibli_image_2025-04-29_23-56-49.png
+2025-04-30 00:00:05 - INFO - Image successfully generated from text: ghibli images\ghibli_image_2025-04-29_23-56-49.png
+2025-04-30 00:00:05 - INFO - Using generated image directly for segmentation.
+2025-04-30 00:00:05 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 143, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-30 00:01:36 - INFO - === AI Sticker Studio started ===
+2025-04-30 00:01:38 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-30 00:01:38 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-30 00:01:38 - INFO - Generating image from text: 'tiger roaring'
+2025-04-30 00:01:38 - INFO - Before generated image
+2025-04-30 00:01:41 - INFO - Generated image path: ghibli images\ghibli_image_2025-04-29_23-56-49.png
+2025-04-30 00:01:41 - INFO - Before segmented image path
+2025-04-30 00:01:41 - INFO - Segmented image path: ghibli images\ghibli_image_2025-04-29_23-56-49.png
+2025-04-30 00:01:41 - INFO - Image successfully generated from text: ghibli images\ghibli_image_2025-04-29_23-56-49.png
+2025-04-30 00:01:41 - INFO - Using generated image directly for segmentation.
+2025-04-30 00:01:41 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 144, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-30 00:02:06 - INFO - === AI Sticker Studio started ===
+2025-04-30 00:02:08 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-30 00:02:08 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-30 00:02:08 - INFO - Generating image from text: 'tiger roaring'
+2025-04-30 00:02:08 - INFO - Before generated image
+2025-04-30 00:02:11 - INFO - Generated image path: ghibli images\ghibli_image_2025-04-29_23-56-49.png
+2025-04-30 00:02:11 - INFO - Before segmented image path
+2025-04-30 00:02:11 - INFO - Segmented image path: ghibli images\ghibli_image_2025-04-29_23-56-49.png
+2025-04-30 00:02:11 - INFO - Image successfully generated from text: ghibli images\ghibli_image_2025-04-29_23-56-49.png
+2025-04-30 00:02:11 - INFO - Using generated image directly for segmentation.
+2025-04-30 00:02:11 - ERROR - Error in processing sticker from text input: segmentor() got an unexpected keyword argument 'model_name'
+Traceback (most recent call last):
+  File "C:\Users\niksh\Desktop\Ghibli-Sticker-Studio\src\main.py", line 144, in process_sticker_from_text
+    seg_img_path = segmentor(themed_img_path, log_filename, model_name='ghibli')
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: segmentor() got an unexpected keyword argument 'model_name'
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
+2025-04-30 00:03:13 - INFO - === AI Sticker Studio closed ===
