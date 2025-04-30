@@ -59,6 +59,12 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
+
+# --- Monitoring Dashboard Links ---
+with st.sidebar:
+    st.markdown("### 🔍 Monitoring")
+    st.markdown("[📊 Prometheus Dashboard](http://localhost:9090)", unsafe_allow_html=True)
+    st.markdown("[📈 Grafana Dashboard](http://localhost:3000)", unsafe_allow_html=True)
 st.title("Sticker Studio 🎨")
 
 # --- Input Method Selection ---
