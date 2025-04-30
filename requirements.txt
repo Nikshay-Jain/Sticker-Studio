@@ -11,3 +11,4 @@ torchaudio
 fvcore
 opencv-python
 cython
+mlflow
