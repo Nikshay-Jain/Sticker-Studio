@@ -11,4 +11,6 @@ torchaudio
 fvcore
 cython
 opencv-python
+cython
+mlflow
 prometheus_client
