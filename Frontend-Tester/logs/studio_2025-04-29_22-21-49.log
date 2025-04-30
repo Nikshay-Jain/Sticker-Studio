@@ -1,0 +1,14 @@
+2025-04-29 22:21:51,662 - INFO - Logging output directed to file: logs\studio_2025-04-29_22-21-49.log
+2025-04-29 22:21:51,663 - INFO - Attempting to generate Ghibli image for description: 'mukesh ambani swimming in gold and dollars'
+2025-04-29 22:21:51,666 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. mukesh ambani swimming in...'
+2025-04-29 22:21:51,667 - INFO - Sending request to Stability AI...
+2025-04-29 22:21:54,952 - ERROR - Stability AI API call failed. Status code: 402
+2025-04-29 22:21:54,954 - ERROR - Response body: {"errors":["You lack sufficient credits to make this request.  Please purchase more credits at https://platform.stability.ai/account/credits and try again."],"id":"e0c88f6c98bbfc4f7947e6550ff8a301","name":"payment_required"}
+2025-04-29 22:21:54,954 - INFO - Trying with ModelsLab API as a fallback...
+2025-04-29 22:21:54,958 - INFO - Sending request to Modelslab API with prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. mukesh ambani swimming in gold and dollars'
+2025-04-29 22:22:01,491 - INFO - Modelslab API request successful.
+2025-04-29 22:22:01,491 - INFO - Generated Image URL: https://modelslab-bom.s3.amazonaws.com/modelslab/160c3f71-57fc-4d2f-9621-53287b3c837f-0.jpg
+2025-04-29 22:22:01,491 - INFO - Creating directory for images: ghibli images
+2025-04-29 22:22:01,492 - INFO - Saving image to: ghibli images\ghibli_image_2025-04-29_22-22-01.png
+2025-04-29 22:22:02,042 - INFO - Image download successful.
+2025-04-29 22:22:02,057 - INFO - Image saved successfully to: ghibli images\ghibli_image_2025-04-29_22-22-01.png

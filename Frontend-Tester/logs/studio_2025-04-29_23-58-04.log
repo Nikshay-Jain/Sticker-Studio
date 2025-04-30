@@ -1,0 +1,11 @@
+2025-04-29 23:58:06,161 - INFO - Logging output directed to file: logs\studio_2025-04-29_23-58-04.log
+2025-04-29 23:58:06,161 - INFO - Attempting to generate Ghibli image for description: 'tiger roaring'
+2025-04-29 23:58:06,165 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. tiger roaring...'
+2025-04-29 23:58:06,165 - INFO - Sending request to Stability AI...
+2025-04-29 23:58:07,934 - ERROR - Stability AI API call failed. Status code: 402
+2025-04-29 23:58:07,938 - ERROR - Response body: {"errors":["You lack sufficient credits to make this request.  Please purchase more credits at https://platform.stability.ai/account/credits and try again."],"id":"6ba52ded1959455ab5a881f5232edde0","name":"payment_required"}
+2025-04-29 23:58:07,940 - INFO - Trying with ModelsLab API as a fallback...
+2025-04-29 23:58:07,943 - INFO - Sending request to Modelslab API with prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. tiger roaring'
+2025-04-29 23:58:08,870 - INFO - Modelslab API request successful.
+2025-04-29 23:58:08,870 - INFO - {'status': 'error', 'message': 'Your monthly limit exceeded, upgrade subscription now on https://modelslab.com/pricing'}
+2025-04-29 23:58:08,870 - WARNING - Image URL not found in the response.

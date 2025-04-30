@@ -1,8 +1,0 @@
-2025-04-29 14:32:59,672 - INFO - Logging output directed to file: logs/studio_2025-04-29_14-32-56.log
-2025-04-29 14:32:59,673 - INFO - Attempting to generate Ghibli image for description: 'A fat panda in red tshirt and teal shorts, high on coffee'
-2025-04-29 14:32:59,683 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. A fat panda in red tshirt...'
-2025-04-29 14:32:59,684 - INFO - Sending request to Stability AI...
-2025-04-29 14:33:18,830 - INFO - Stability AI API call successful.
-2025-04-29 14:33:18,833 - INFO - Image data received and opened successfully.
-2025-04-29 14:33:18,835 - INFO - Saving image to directory 'ghibli images'...
-2025-04-29 14:33:19,887 - INFO - Process complete. Image saved to: ghibli images/5b3b540e681b86d510ea819a5e2a5fdde24769dcac96d0374b8806838218299e.png

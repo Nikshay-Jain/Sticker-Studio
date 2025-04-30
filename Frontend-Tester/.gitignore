@@ -1,0 +1,8 @@
+/.venv39-linux
+/.venv39
+/data
+/src/detectron2
+src/__pycache__
+config.ini
+credentials.txt
+tracking/prometheus-2.45.0.linux-amd64

@@ -1,0 +1,14 @@
+2025-04-29 20:27:59,895 - INFO - Logging output directed to file: logs\studio_2025-04-29_20-27-59.log
+2025-04-29 20:27:59,895 - INFO - Attempting to generate Ghibli image for description: 'Horse riding a goat on top'
+2025-04-29 20:27:59,905 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. Horse riding a goat on to...'
+2025-04-29 20:27:59,907 - INFO - Sending request to Stability AI...
+2025-04-29 20:28:03,749 - ERROR - Stability AI API call failed. Status code: 402
+2025-04-29 20:28:03,751 - ERROR - Response body: {"errors":["You lack sufficient credits to make this request.  Please purchase more credits at https://platform.stability.ai/account/credits and try again."],"id":"e3d254300db9b2b7f0f9a0c75ef9e4df","name":"payment_required"}
+2025-04-29 20:28:03,751 - INFO - Trying with ModelsLab API as a fallback...
+2025-04-29 20:28:03,755 - INFO - Sending request to Modelslab API with prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. Horse riding a goat on top'
+2025-04-29 20:28:10,791 - INFO - Modelslab API request successful.
+2025-04-29 20:28:10,793 - INFO - Generated Image URL: https://modelslab-bom.s3.amazonaws.com/modelslab/698d0248-22a0-43fa-9f43-5074108a436a-0.jpg
+2025-04-29 20:28:10,794 - INFO - Creating directory for images: ghibli images
+2025-04-29 20:28:10,794 - INFO - Saving image to: ghibli images\ghibli_image_2025-04-29_20-28-10.png
+2025-04-29 20:28:11,067 - INFO - Image download successful.
+2025-04-29 20:28:11,119 - INFO - Image saved successfully to: ghibli images\ghibli_image_2025-04-29_20-28-10.png

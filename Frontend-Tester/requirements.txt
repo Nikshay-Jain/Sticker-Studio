@@ -1,0 +1,13 @@
+piexif
+streamlit
+tensorflow
+stability-sdk
+scikit-learn
+pillow
+pycocotools
+fvcore
+cython
+opencv-python
+cython
+mlflow
+prometheus_client

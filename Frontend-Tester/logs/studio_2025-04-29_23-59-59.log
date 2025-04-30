@@ -1,0 +1,7 @@
+2025-04-30 00:00:00,630 - INFO - Logging output directed to file: logs\studio_2025-04-29_23-59-59.log
+2025-04-30 00:00:00,630 - INFO - Attempting to generate Ghibli image for description: 'tiger roaring'
+2025-04-30 00:00:00,636 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. tiger roaring...'
+2025-04-30 00:00:00,636 - INFO - Sending request to Stability AI...
+2025-04-30 00:00:05,753 - ERROR - Stability AI API call failed. Status code: 402
+2025-04-30 00:00:05,753 - ERROR - Response body: {"errors":["You lack sufficient credits to make this request.  Please purchase more credits at https://platform.stability.ai/account/credits and try again."],"id":"2297111663218f781d1542a000f4f328","name":"payment_required"}
+2025-04-30 00:00:05,768 - INFO - Trying with ModelsLab API as a fallback...

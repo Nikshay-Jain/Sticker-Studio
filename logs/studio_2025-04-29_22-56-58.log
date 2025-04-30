@@ -1,8 +1,0 @@
-2025-04-29 22:57:00,887 - INFO - Logging output directed to file: logs\studio_2025-04-29_22-56-58.log
-2025-04-29 22:57:00,887 - INFO - Attempting to generate Ghibli image for description: 'pandas on trees, eating bamboos'
-2025-04-29 22:57:00,893 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. pandas on trees, eating b...'
-2025-04-29 22:57:00,893 - INFO - Sending request to Stability AI...
-2025-04-29 22:57:21,335 - INFO - Stability AI API call successful.
-2025-04-29 22:57:21,443 - INFO - Image data received and opened successfully.
-2025-04-29 22:57:21,443 - INFO - Saving image to directory 'ghibli images'...
-2025-04-29 22:57:21,844 - INFO - Process complete. Image saved to: ghibli images\88f3c8e1083e9507019f473c4a23f6ee6d4c99940acc06dff5f9c3263ac0e630.png

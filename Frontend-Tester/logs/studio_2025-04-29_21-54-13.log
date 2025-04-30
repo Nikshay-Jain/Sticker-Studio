@@ -1,0 +1,14 @@
+2025-04-29 21:54:16,205 - INFO - Logging output directed to file: logs\studio_2025-04-29_21-54-13.log
+2025-04-29 21:54:16,221 - INFO - Attempting to generate Ghibli image for description: 'hello girl'
+2025-04-29 21:54:16,221 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. hello girl...'
+2025-04-29 21:54:16,221 - INFO - Sending request to Stability AI...
+2025-04-29 21:54:21,952 - ERROR - Stability AI API call failed. Status code: 402
+2025-04-29 21:54:21,952 - ERROR - Response body: {"errors":["You lack sufficient credits to make this request.  Please purchase more credits at https://platform.stability.ai/account/credits and try again."],"id":"cb14f128aa0306d336513b3af97eae34","name":"payment_required"}
+2025-04-29 21:54:21,952 - INFO - Trying with ModelsLab API as a fallback...
+2025-04-29 21:54:21,954 - INFO - Sending request to Modelslab API with prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. hello girl'
+2025-04-29 21:54:58,984 - INFO - Modelslab API request successful.
+2025-04-29 21:54:58,990 - INFO - Generated Image URL: https://modelslab-bom.s3.amazonaws.com/modelslab/92089ca6-e101-4f50-9d94-4d69a7352355-0.jpg
+2025-04-29 21:54:58,993 - INFO - Creating directory for images: ghibli images
+2025-04-29 21:54:58,993 - INFO - Saving image to: ghibli images\ghibli_image_2025-04-29_21-54-58.png
+2025-04-29 21:54:59,532 - INFO - Image download successful.
+2025-04-29 21:54:59,544 - INFO - Image saved successfully to: ghibli images\ghibli_image_2025-04-29_21-54-58.png

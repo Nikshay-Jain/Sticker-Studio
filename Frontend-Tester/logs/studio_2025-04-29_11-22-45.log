@@ -1,0 +1,7 @@
+2025-04-29 11:22:45 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:22:50 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:22:50 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:24:10 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:24:12 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:24:12 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:24:30 - INFO - === AI Sticker Studio closed ===

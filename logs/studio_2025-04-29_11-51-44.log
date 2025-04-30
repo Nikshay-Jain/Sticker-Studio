@@ -1,6 +1,0 @@
-2025-04-29 11:51:47,644 - INFO - Logging output directed to file: logs/studio_2025-04-29_11-51-44.log
-2025-04-29 11:51:47,647 - INFO - Attempting to generate Ghibli image for description: 'a boy punished by teacher to kneel down'
-2025-04-29 11:51:47,653 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. a boy punished by teacher...'
-2025-04-29 11:51:47,654 - INFO - Sending request to Stability AI...
-2025-04-29 11:51:51,163 - ERROR - Stability AI API call failed. Status code: 402
-2025-04-29 11:51:51,165 - ERROR - Response body: {"errors":["You lack sufficient credits to make this request.  Please purchase more credits at https://platform.stability.ai/account/credits and try again."],"id":"dc9483ee7e718d4916e9094401c877ec","name":"payment_required"}

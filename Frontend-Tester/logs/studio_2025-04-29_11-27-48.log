@@ -1,0 +1,57 @@
+2025-04-29 11:27:48 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:27:54 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:27:54 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:28:00 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:28:04 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:28:04 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:28:34 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:28:37 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:28:37 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:29:12 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:29:16 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:29:16 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:29:25 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:29:29 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:29:34 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:29:34 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:29:35 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:29:35 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:29:41 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:29:44 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:29:46 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:29:46 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:29:46 - ERROR - Error loading classifier model: 'NoneType' object has no attribute 'pop'
+2025-04-29 11:29:50 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:29:54 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:29:54 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:29:57 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:30:02 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:30:02 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:30:02 - INFO - Generating image from text: 'A cartoon cow in the style of studio ghibli animation that is jumping towards the moon from india.'
+2025-04-29 11:30:02 - ERROR - Error in processing sticker from text input: generate_and_save_ghibli_image() takes from 1 to 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/mnt/c/Users/niksh/Desktop/Ghibli-Sticker-Studio/src/main.py", line 210, in process_sticker_from_text
+    generated_img_path = generate_and_save_ghibli_image(text_for_image, GENERATED_IMG_DIR, log_filename)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: generate_and_save_ghibli_image() takes from 1 to 2 positional arguments but 3 were given
+2025-04-29 11:31:09 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:31:12 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:31:12 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:31:12 - INFO - Generating image from text: 'A cartoon cow in the style of studio ghibli animation that is jumping towards the moon from india.'
+2025-04-29 11:31:12 - ERROR - Error in processing sticker from text input: generate_and_save_ghibli_image() takes from 1 to 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/mnt/c/Users/niksh/Desktop/Ghibli-Sticker-Studio/src/main.py", line 210, in process_sticker_from_text
+    generated_img_path = generate_and_save_ghibli_image(text_for_image, log_filename)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: generate_and_save_ghibli_image() takes from 1 to 2 positional arguments but 3 were given
+2025-04-29 11:31:15 - INFO - === AI Sticker Studio started ===
+2025-04-29 11:31:18 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 11:31:18 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 11:31:18 - INFO - Generating image from text: 'A cartoon cow in the style of studio ghibli animation that is jumping towards the moon from india.'
+2025-04-29 11:31:18 - ERROR - Error in processing sticker from text input: generate_and_save_ghibli_image() takes from 1 to 2 positional arguments but 3 were given
+Traceback (most recent call last):
+  File "/mnt/c/Users/niksh/Desktop/Ghibli-Sticker-Studio/src/main.py", line 210, in process_sticker_from_text
+    generated_img_path = generate_and_save_ghibli_image(text_for_image, log_filename)
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: generate_and_save_ghibli_image() takes from 1 to 2 positional arguments but 3 were given
+2025-04-29 11:31:46 - INFO - === AI Sticker Studio closed ===

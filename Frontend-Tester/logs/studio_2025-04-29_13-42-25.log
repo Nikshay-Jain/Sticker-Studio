@@ -1,0 +1,27 @@
+2025-04-29 13:42:25 - INFO - === AI Sticker Studio started ===
+2025-04-29 13:42:28 - INFO - === AI Sticker Studio started ===
+2025-04-29 13:42:29 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 13:42:30 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 13:42:30 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 13:42:30 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 13:42:48 - INFO - === AI Sticker Studio started ===
+2025-04-29 13:42:52 - INFO - === AI Sticker Studio started ===
+2025-04-29 13:42:52 - INFO - === AI Sticker Studio started ===
+2025-04-29 13:42:56 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 13:42:56 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 13:42:56 - ERROR - Error loading classifier model: 'NoneType' object has no attribute 'pop'
+2025-04-29 13:42:57 - ERROR - Error loading classifier model: 'NoneType' object has no attribute 'pop'
+2025-04-29 13:43:00 - INFO - === AI Sticker Studio started ===
+2025-04-29 13:43:04 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 13:43:04 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 13:43:05 - INFO - === AI Sticker Studio started ===
+2025-04-29 13:43:07 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 13:43:07 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 13:43:07 - INFO - Uploaded file saved: uploads/20250429134307_655985e968ad9733d007fa90bcf549243e1bcde0c65a80d77d92eafc2f84360a.png
+2025-04-29 13:43:09 - INFO - Image classified as GHIBLI. Using fine-tuned YOLO model.
+2025-04-29 13:43:10 - INFO - Successfully created sticker: stickers/sticker_MAGA!!!_13-43-10.webp
+2025-04-29 13:43:10 - INFO - Sticker successfully generated from uploaded image: stickers/sticker_MAGA!!!_13-43-10.webp
+2025-04-29 13:43:46 - INFO - === AI Sticker Studio started ===
+2025-04-29 13:43:50 - WARNING - Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+2025-04-29 13:43:50 - INFO - Classifier model loaded from: models/Ghibli-normal-classifier/Mobilenet_ghibli_normal.h5
+2025-04-29 13:44:20 - INFO - === AI Sticker Studio closed ===

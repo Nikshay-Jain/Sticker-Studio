@@ -1,8 +1,0 @@
-2025-04-29 11:46:31,541 - INFO - Logging output directed to file: logs/studio_2025-04-29_11-46-27.log
-2025-04-29 11:46:31,544 - INFO - Attempting to generate Ghibli image for description: 'A pidgeon with donald trumps face, threatening china, represented by a fierce dragon'
-2025-04-29 11:46:31,553 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. A pidgeon with donald tru...'
-2025-04-29 11:46:31,554 - INFO - Sending request to Stability AI...
-2025-04-29 11:46:50,927 - INFO - Stability AI API call successful.
-2025-04-29 11:46:50,931 - INFO - Image data received and opened successfully.
-2025-04-29 11:46:50,933 - INFO - Saving image to directory 'ghibli images'...
-2025-04-29 11:46:51,699 - INFO - Process complete. Image saved to: ghibli images/655985e968ad9733d007fa90bcf549243e1bcde0c65a80d77d92eafc2f84360a.png

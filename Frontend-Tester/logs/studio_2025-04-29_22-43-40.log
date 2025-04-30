@@ -1,0 +1,10 @@
+2025-04-29 22:43:43,276 - INFO - Logging output directed to file: logs\studio_2025-04-29_22-43-40.log
+2025-04-29 22:43:43,278 - INFO - Attempting to generate Ghibli image for description: 'America's map with african people'
+2025-04-29 22:43:43,287 - INFO - Using full prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. America's map with africa...'
+2025-04-29 22:43:43,287 - INFO - Sending request to Stability AI...
+2025-04-29 22:43:48,375 - ERROR - Stability AI API call failed. Status code: 402
+2025-04-29 22:43:48,383 - ERROR - Response body: {"errors":["You lack sufficient credits to make this request.  Please purchase more credits at https://platform.stability.ai/account/credits and try again."],"id":"168f33f7b131ea9e60984eb25751a22d","name":"payment_required"}
+2025-04-29 22:43:48,383 - INFO - Trying with ModelsLab API as a fallback...
+2025-04-29 22:43:48,383 - INFO - Sending request to Modelslab API with prompt: 'Hand-painted illustration in the style of Studio Ghibli. monotonic white background color, soft light, naturalistic details. America's map with african people'
+2025-04-29 22:43:50,329 - INFO - Modelslab API request successful.
+2025-04-29 22:43:50,331 - WARNING - Image URL not found in the response.
