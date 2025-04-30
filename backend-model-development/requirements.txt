@@ -1,0 +1,13 @@
+scikit-learn
+Pillow
+pycocotools
+torch
+torchvision
+torchaudio
+fvcore
+opencv-python
+cython
+ultralytics
+mlflow
+playwright
+dvc

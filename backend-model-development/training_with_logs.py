@@ -1,0 +1,719 @@
+import cv2
+import numpy as np
+import os
+import torch
+import yaml
+import configparser
+import glob
+from sklearn.model_selection import train_test_split
+import sys
+import logging # Import the logging module
+
+# --- Configure Logging ---
+log_directory = "logs"
+log_file_path = os.path.join(log_directory, "model_training.log")
+
+# Ensure the logs directory exists
+os.makedirs(log_directory, exist_ok=True)
+
+logging.basicConfig(
+    level=logging.INFO, # Set the minimum logging level (e.g., INFO, DEBUG, WARNING, ERROR)
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(log_file_path), # Log to a file
+        # logging.StreamHandler() # Uncomment this line if you also want to see logs in the console
+    ]
+)
+
+# --- Detectron2 Imports ---
+try:
+    from detectron2.config import get_cfg
+    from detectron2.engine import DefaultPredictor
+    from detectron2.data import MetadataCatalog
+    # Visualizer is useful for debugging, but not needed for generation
+    # from detectron2.utils.visualizer import Visualizer
+    logging.info("Detectron2 imports successful.") # Changed from print
+except ImportError:
+    logging.error("Error: Detectron2 not found.") # Changed from print
+    logging.error("Please install Detectron2 following the official guide:") # Changed from print
+    logging.error("https://github.com/facebookresearch/detectron2/blob/main/INSTALL.md") # Changed from print
+    sys.exit(1)
+
+# --- Ultralytics YOLO Import ---
+try:
+    from ultralytics import YOLO
+    logging.info("Ultralytics YOLO import successful.") # Changed from print
+except ImportError:
+    logging.error("Error: Ultralytics YOLO not found.") # Changed from print
+    logging.error("Please install it using: pip install ultralytics") # Changed from print
+    sys.exit(1)
+
+# --- Configuration File Path ---
+CONFIG_FILE_PATH = "config.ini" # Path to your configuration file
+
+# --- Read Configuration from config.ini ---
+def read_config(config_path):
+    """Reads configuration from the specified .ini file."""
+    config = configparser.ConfigParser()
+    if not os.path.exists(config_path):
+        raise FileNotFoundError(f"Config file not found at {config_path}")
+    config.read(config_path)
+
+    required_sections = ['Paths']
+    for section in required_sections:
+        if not config.has_section(section):
+            raise configparser.NoSectionError(f"Section '{section}' missing in config file.")
+
+    required_paths = ['base_data_directory', 'models_directory']
+    for path_key in required_paths:
+         if not config.has_option('Paths', path_key) or not config.get('Paths', path_key).strip(): # Use strip() to check for empty string
+             raise configparser.NoOptionError(f"Option '{path_key}' missing or empty in [Paths] section of config file.")
+
+    base_data_dir = config.get('Paths', 'base_data_directory').strip()
+    models_dir = config.get('Paths', 'models_directory').strip()
+
+    # Ensure directories exist
+    os.makedirs(base_data_dir, exist_ok=True)
+    os.makedirs(models_dir, exist_ok=True)
+
+    config_settings = {}
+    # Read other potential settings from config.ini if desired, e.g., [Training] section
+    if config.has_section('Training'):
+        if config.has_option('Training', 'epochs'):
+             config_settings['EPOCHS'] = config.getint('Training', 'epochs')
+        if config.has_option('Training', 'batch_size'):
+             config_settings['BATCH_SIZE'] = config.getint('Training', 'batch_size')
+        if config.has_option('Training', 'img_size'):
+             config_settings['IMG_SIZE'] = config.getint('Training', 'img_size')
+        if config.has_option('Training', 'patience'):
+             config_settings['PATIENCE'] = config.getint('Training', 'patience')
+        if config.has_option('Training', 'split_ratio'):
+             config_settings['SPLIT_RATIO'] = config.getfloat('Training', 'split_ratio')
+        if config.has_option('Training', 'random_seed'):
+             config_settings['RANDOM_SEED'] = config.getint('Training', 'random_seed')
+
+    return base_data_dir, models_dir, config_settings
+
+
+logging.info(f"Reading configuration from {CONFIG_FILE_PATH}...") # Changed from print
+try:
+    BASE_DATA_DIRECTORY, MODELS_DIRECTORY, CONFIG_TRAINING_SETTINGS = read_config(CONFIG_FILE_PATH)
+    logging.info(f"Base Data Directory: {BASE_DATA_DIRECTORY}") # Changed from print
+    logging.info(f"Models Directory: {MODELS_DIRECTORY}") # Changed from print
+    logging.info(f"Training settings from config: {CONFIG_TRAINING_SETTINGS}") # Changed from print
+except (FileNotFoundError, configparser.NoSectionError, configparser.NoOptionError, Exception) as e:
+    logging.error(f"Fatal Error reading config file: {e}") # Changed from print
+    sys.exit(1)
+
+# --- Find Latest Data Directory ---
+def find_latest_data_directory(base_data_dir):
+    """
+    Finds the directory with the highest numeric name (e.g., '0003')
+    within the base data directory.
+
+    Returns:
+        tuple: (path to latest directory, its numeric count string e.g., '0003')
+               Returns (None, None) if no numeric directories found.
+    """
+    if not os.path.isdir(base_data_dir):
+        logging.error(f"Error: Base data directory not found or is not a directory: {base_data_dir}") # Changed from print
+        return None, None
+
+    # List all entries in the base directory
+    try:
+        entries = os.listdir(base_data_dir)
+    except OSError as e:
+        logging.error(f"Error listing directory {base_data_dir}: {e}") # Changed from print
+        return None, None
+
+
+    # Filter for directories with names consisting of only digits
+    numeric_dirs = [entry for entry in entries if os.path.isdir(os.path.join(base_data_dir, entry)) and entry.isdigit()]
+
+    if not numeric_dirs:
+        logging.warning(f"No numeric data directories found in {base_data_dir}.") # Changed from print
+        return None, None
+
+    # Sort numerically to find the largest
+    try:
+        numeric_dirs.sort(key=int)
+    except ValueError:
+        logging.warning(f"Warning: Non-integer directory names found in {base_data_dir} during sorting.") # Changed from print
+        # Fallback to string sort if integer sort fails, though behavior might be unexpected if padding varies
+        numeric_dirs.sort()
+        logging.warning("Attempted string sort instead.") # Changed from print
+
+
+    latest_count_str = numeric_dirs[-1]
+    latest_dir_path = os.path.join(base_data_dir, latest_count_str)
+
+    logging.info(f"Found latest data directory: {latest_dir_path} (Count: {latest_count_str})") # Changed from print
+    return latest_dir_path, latest_count_str
+
+LATEST_DATA_DIRECTORY, CURRENT_EXECUTION_COUNT = find_latest_data_directory(BASE_DATA_DIRECTORY)
+
+if LATEST_DATA_DIRECTORY is None or CURRENT_EXECUTION_COUNT is None:
+    logging.error("Fatal Error: Could not determine the latest data directory and execution count.") # Changed from print
+    logging.error("Ensure your scraper creates directories like base_data_dir/0001, base_data_dir/0002 etc., containing data.") # Changed from print
+    sys.exit(1)
+
+# The input directory for THIS run's data generation is the latest one found
+INPUT_IMAGE_BASE_DIR_THIS_RUN = LATEST_DATA_DIRECTORY
+
+# Output dataset directory for THIS run's generated data
+# We'll create a subdirectory within the base data dir named after the count
+# This keeps the generated datasets separate for each run
+OUTPUT_BASE_DIR_THIS_RUN = os.path.join(BASE_DATA_DIRECTORY, "yolo_datasets", CURRENT_EXECUTION_COUNT)
+
+
+# --- Setup Output Dataset Directories for this specific run's dataset ---
+# These are relative to OUTPUT_BASE_DIR_THIS_RUN
+TRAIN_IMAGE_SUBDIR_REL = "images/train"
+TRAIN_LABEL_SUBDIR_REL = "labels/train"
+VAL_IMAGE_SUBDIR_REL = "images/val"
+VAL_LABEL_SUBDIR_REL = "labels/val"
+
+output_train_image_dir_full = os.path.join(OUTPUT_BASE_DIR_THIS_RUN, TRAIN_IMAGE_SUBDIR_REL)
+output_train_label_dir_full = os.path.join(OUTPUT_BASE_DIR_THIS_RUN, TRAIN_LABEL_SUBDIR_REL)
+output_val_image_dir_full = os.path.join(OUTPUT_BASE_DIR_THIS_RUN, VAL_IMAGE_SUBDIR_REL)
+output_val_label_dir_full = os.path.join(OUTPUT_BASE_DIR_THIS_RUN, VAL_LABEL_SUBDIR_REL)
+
+os.makedirs(output_train_image_dir_full, exist_ok=True)
+os.makedirs(output_train_label_dir_full, exist_ok=True)
+os.makedirs(output_val_image_dir_full, exist_ok=True)
+os.makedirs(output_val_label_dir_full, exist_ok=True)
+
+logging.info(f"This run's generated dataset will be stored in: {OUTPUT_BASE_DIR_THIS_RUN}") # Changed from print
+
+
+# Detectron2 Model Configuration
+# You need to download a config file and weights file for a Detectron2 segmentation model.
+# Examples from Detectron2 Model Zoo:
+# Config: "COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"
+# Weights: Corresponding model_final.pth file
+D2_CONFIG_FILE = "detectron2/configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml" # e.g., "configs/COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"
+D2_WEIGHTS_FILE = "detectron2://COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x/137849600/model_final_f10217.pkl" # e.g., "models/model_final_f10298.pkl" or .pth
+D2_CONFIDENCE_THRESHOLD = 0.4 # Minimum confidence score for Detectron2 detections to be considered
+
+
+# --- Class Mapping ---
+# Define how Detectron2's class names map to your desired YOLOv8 class IDs (starting from 0).
+# Check your Detectron2 model's metadata or documentation for its class names.
+# Example: If Detectron2 detects 'person' (ID 0) and 'car' (ID 2) and you want YOLO to learn them as ID 0 and ID 1:
+CLASS_MAPPING = {"person": 0, "bicycle": 1, "car": 2, "motorcycle": 3, "airplane": 4, "bus": 5, "train": 6, "truck": 7, "boat": 8, "traffic light": 9, "fire hydrant": 10, "stop sign": 11, "parking meter": 12, "bench": 13, "bird": 14, "cat": 15, "dog": 16, "horse": 17, "sheep": 18, "cow": 19, "elephant": 20, "bear": 21, "zebra": 22, "giraffe": 23, "backpack": 24, "umbrella": 25, "handbag": 26, "tie": 27, "suitcase": 28, "frisbee": 29, "skis": 30, "snowboard": 31, "sports ball": 32, "kite": 33, "baseball bat": 34, "baseball glove": 35, "skateboard": 36, "surfboard": 37, "tennis racket": 38, "bottle": 39, "wine glass": 40, "cup": 41, "fork": 42, "knife": 43, "spoon": 44, "bowl": 45, "banana": 46, "apple": 47, "sandwich": 48, "orange": 49, "broccoli": 50, "carrot": 51, "hot dog": 52, "pizza": 53, "donut": 54, "cake": 55, "chair": 56, "couch": 57, "potted plant": 58, "bed": 59, "dining table": 60, "toilet": 61, "tv": 62, "laptop": 63, "mouse": 64, "remote": 65, "keyboard": 66, "cell phone": 67, "microwave": 68, "oven": 69, "toaster": 70, "sink": 71, "refrigerator": 72, "book": 73, "clock": 74, "vase": 75, "scissors": 76, "teddy bear": 77, "hair drier": 78, "toothbrush": 79}
+# Define the names for your YOLOv8 classes (must match the order of IDs in CLASS_MAPPING)
+YOLO_CLASS_NAMES = ["person", "bicycle", "car", "motorcycle", "airplane", "bus", "train", "truck", "boat", "traffic light", "fire hydrant", "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse", "sheep", "cow", "elephant", "bear", "zebra", "giraffe", "backpack", "umbrella", "handbag", "tie", "suitcase", "frisbee", "skis", "snowboard", "sports ball", "kite", "baseball bat", "baseball glove", "skateboard", "surfboard", "tennis racket", "bottle", "wine glass", "cup", "fork", "knife", "spoon", "bowl", "banana", "apple", "sandwich", "orange", "broccoli", "carrot", "hot dog", "pizza", "donut", "cake", "chair", "couch", "potted plant", "bed", "dining table", "toilet", "tv", "laptop", "mouse", "remote", "keyboard", "cell phone", "microwave", "oven", "toaster", "sink", "refrigerator", "book", "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"]
+
+# YOLOv8 Training Configuration
+YOLO_MODEL_TYPE = "models/yolov8n-seg.pt" # The YOLOv8 segmentation model variant (e.g., 'n', 's', 'm', 'l', 'x')
+EPOCHS = 5 # Number of training epochs for YOLOv8
+IMG_SIZE = 640 # Image size for YOLOv8 training (e.g., 640)
+BATCH_SIZE = 16 # Batch size for YOLOv8 training (adjust based on GPU memory)
+# Add any other YOLOv8 training arguments you need (e.g., patience, device, etc.)
+
+# Ensure CLASS_MAPPING values cover all IDs from 0 to len(YOLO_CLASS_NAMES) - 1
+if len(CLASS_MAPPING) != len(YOLO_CLASS_NAMES):
+    logging.error("Fatal Error: The number of entries in CLASS_MAPPING does not match the number of names in YOLO_CLASS_NAMES.") # Changed from print
+    logging.error("Ensure your class mapping and names list are consistent.") # Changed from print
+    sys.exit(1)
+mapped_yolo_ids = sorted(list(CLASS_MAPPING.values()))
+if mapped_yolo_ids != list(range(len(YOLO_CLASS_NAMES))):
+     logging.error("Fatal Error: YOLO class IDs in CLASS_MAPPING are not a consecutive sequence starting from 0.") # Changed from print
+     logging.error("Ensure your mapped YOLO IDs are 0, 1, 2,... up to the number of classes - 1.") # Changed from print
+     sys.exit(1)
+
+
+# --- YOLOv8 Training Configuration (Defaults, potentially overridden by config.ini) ---
+BASE_YOLO_MODEL_TYPE = "yolov8n-seg.pt" # Base model type - used for the very first run (count 0001)
+EPOCHS = CONFIG_TRAINING_SETTINGS.get('EPOCHS', 1) # Use config value if present, otherwise default
+IMG_SIZE = CONFIG_TRAINING_SETTINGS.get('IMG_SIZE', 640)
+BATCH_SIZE = CONFIG_TRAINING_SETTINGS.get('BATCH_SIZE', 16)
+PATIENCE = CONFIG_TRAINING_SETTINGS.get('PATIENCE', 50)
+SPLIT_RATIO = CONFIG_TRAINING_SETTINGS.get('SPLIT_RATIO', 0.3)
+RANDOM_SEED = CONFIG_TRAINING_SETTINGS.get('RANDOM_SEED', 42)
+
+logging.info(f"\nEffective Training Parameters:") # Changed from print
+logging.info(f"  Epochs: {EPOCHS}") # Changed from print
+logging.info(f"  Batch Size: {BATCH_SIZE}") # Changed from print
+logging.info(f"  Image Size: {IMG_SIZE}") # Changed from print
+logging.info(f"  Patience: {PATIENCE}") # Changed from print
+logging.info(f"  Split Ratio: {SPLIT_RATIO}") # Changed from print
+logging.info(f"  Random Seed: {RANDOM_SEED}") # Changed from print
+
+
+# --- Part 1: Detectron2 Predictor Setup ---
+logging.info("\nSetting up Detectron2 predictor...") # Changed from print
+def setup_detectron2_predictor(config_file, weights_file, confidence_threshold=0.5):
+    """Sets up the Detectron2 predictor."""
+    cfg = get_cfg()
+    try:
+        cfg.merge_from_file(config_file)
+    except FileNotFoundError:
+        logging.error(f"Fatal Error: Detectron2 config file not found at {config_file}") # Changed from print
+        sys.exit(1)
+    try:
+        cfg.MODEL.WEIGHTS = weights_file
+    except FileNotFoundError:
+         logging.error(f"Fatal Error: Detectron2 weights file not found at {weights_file}") # Changed from print
+         sys.exit(1)
+
+    cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = confidence_threshold
+    cfg.MODEL.DEVICE = "cuda" if torch.cuda.is_available() else "mps" if torch.backends.mps.is_available() else "cpu"
+    logging.info(f"Using device for Detectron2: {cfg.MODEL.DEVICE}") # Changed from print
+    predictor = DefaultPredictor(cfg)
+    metadata = None
+    try:
+        dataset_name = cfg.DATASETS.TEST[0] if cfg.DATASETS.TEST else cfg.DATASETS.TRAIN[0]
+        metadata = MetadataCatalog.get(dataset_name)
+        logging.info(f"Detectron2 metadata loaded for dataset: {dataset_name}") # Changed from print
+        # print(f"Detectron2 knows these classes: {metadata.thing_classes}") # Optional: Print known D2 classes
+        # Basic check to ensure CLASS_MAPPING keys exist in D2 metadata classes
+        if metadata is not None and hasattr(metadata, 'thing_classes') and metadata.thing_classes:
+            for mapped_name in CLASS_MAPPING.keys():
+                if isinstance(mapped_name, str) and mapped_name not in metadata.thing_classes:
+                    logging.warning(f"Warning: Detectron2 metadata does not contain class name '{mapped_name}' from CLASS_MAPPING keys.") # Changed from print
+                    logging.warning("Ensure string keys in CLASS_MAPPING match D2's actual class names.") # Changed from print
+        else:
+             logging.warning("Warning: Could not get D2 thing_classes from metadata. Relying on raw D2 IDs for mapping lookup.") # Changed from print
+
+
+    except Exception as e:
+        logging.warning(f"Warning: Could not automatically load Detectron2 dataset metadata ({e}). Ensure CLASS_MAPPING is correct.") # Changed from print
+        logging.warning("Mapping will rely solely on raw class IDs and your mapping dictionary.") # Changed from print
+        metadata = None # Explicitly set to None if metadata loading fails
+
+    return predictor, metadata
+
+try:
+    d2_predictor, d2_metadata = setup_detectron2_predictor(D2_CONFIG_FILE, D2_WEIGHTS_FILE, D2_CONFIDENCE_THRESHOLD)
+except Exception as e:
+    logging.error(f"Fatal Error during Detectron2 predictor setup: {e}") # Changed from print
+    sys.exit(1)
+logging.info("Detectron2 predictor setup complete.") # Changed from print
+
+# --- Part 2: Mask to YOLOv8 Polygon Conversion Function ---
+def mask_to_yolo_polygon(mask, image_width, image_height, simplify_epsilon=0.005):
+    """
+    Converts a binary mask to YOLOv8 polygon coordinates (normalized).
+
+    Args:
+        mask (np.ndarray): A binary mask (2D numpy array, dtype=uint8, 0 or 255).
+                           Assumes the object area is > 0.
+        image_width (int): The width of the original image.
+        image_height (int): The height of the original image.
+        simplify_epsilon (float): Epsilon parameter for cv2.approxPolyDP.
+
+    Returns:
+        list: A list of normalized polygon coordinates [x1, y1, x2, y2, ...].
+              Returns an empty list if no valid contour or insufficient points.
+    """
+    # Ensure mask is binary (0 or 255) and correct type for findContours
+    if mask.dtype == bool:
+         mask = mask.astype(np.uint8) * 255
+    elif mask.dtype != np.uint8:
+         # Assuming it might be float 0.0-1.0, convert
+         mask = (mask * 255).astype(np.uint8)
+         mask[mask > 0] = 255 # Ensure strict binary if floats were intermediate
+
+
+    contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+
+    if not contours:
+        return []
+
+    # Find the largest contour.
+    largest_contour = max(contours, key=cv2.contourArea)
+
+    # Optional: Simplify the contour
+    approx_polygon = largest_contour
+    if simplify_epsilon > 0:
+        epsilon = simplify_epsilon * cv2.arcLength(largest_contour, True)
+        approx_polygon = cv2.approxPolyDP(largest_contour, epsilon, True)
+
+    # Filter out contours that might be too small or invalid after simplification
+    if len(approx_polygon) < 3: # A polygon needs at least 3 points
+         return []
+
+    # Flatten the contour points and normalize coordinates
+    normalized_polygon = []
+    for point in approx_polygon.reshape(-1, 2):
+        normalized_polygon.append(point[0] / image_width)
+        normalized_polygon.append(point[1] / image_height)
+
+    # YOLOv8 segmentation format requires at least 6 points (3 * 2 coordinates) for a polygon
+    if len(normalized_polygon) < 6:
+        # logging.warning(f"Warning: Simplified polygon has fewer than 6 points ({len(normalized_polygon)//2}).") # Optional warning - Changed from print
+        return []
+
+    return normalized_polygon
+logging.info("Mask conversion function defined.") # Changed from print
+
+# --- Part 3 & 4: Find Images, Split Data, and Generate Annotations ---
+
+# Find all image files recursively in subdirectories of the input base directory for this run
+def find_all_images_recursive(base_dir):
+    """Finds all image files (jpg, jpeg, png) recursively within base_dir."""
+    image_paths = []
+    valid_extensions = ['*.jpg', '*.jpeg', '*.png', '*.JPG', '*.JPEG', '*.PNG']
+    for ext in valid_extensions:
+        # Use os.path.join for path robustness across OS
+        search_pattern = os.path.join(base_dir, '**', ext)
+        image_paths.extend(glob.glob(search_pattern, recursive=True))
+    return image_paths
+
+# Function to process a list of image full paths for a specific split
+def process_images_for_split(image_full_paths_list, output_image_folder, output_label_folder, d2_predictor, d2_metadata, class_mapping, input_base_for_naming):
+    """
+    Processes images (given full paths) for a given split, generates annotations, and saves files.
+
+    Args:
+        image_full_paths_list (list): A list of full paths to image files for this split.
+        output_image_folder (str): Full path to the output directory for images of this split.
+        output_label_folder (str): Full path to the output directory for labels of this split.
+        d2_predictor (DefaultPredictor): Configured Detectron2 predictor.
+        d2_metadata (MetadataCatalog): Detectron2 dataset metadata or None.
+        class_mapping (dict): Mapping from Detectron2 classes to YOLOv8 class IDs.
+        input_base_for_naming (str): The base input directory used to create relative names
+                                     for saving (e.g., the LATEST_DATA_DIRECTORY).
+
+    Returns:
+        int: The number of images successfully processed and saved in this split.
+    """
+    processed_count = 0
+    logging.info(f"\nProcessing {len(image_full_paths_list)} images for split: {os.path.basename(output_image_folder)}...") # Changed from print
+
+    for i, image_full_path in enumerate(image_full_paths_list):
+        # Create a simpler filename for the output dataset based on relative path
+        # Replace path separators with underscores to flatten directory structure in filename
+        try:
+            relative_path = os.path.relpath(image_full_path, input_base_for_naming)
+            # Clean up path separators and potential problematic characters for filenames
+            safe_filename_base = relative_path.replace(os.sep, '_').replace(':', '').replace('..', '__')
+            # Ensure it doesn't start with underscore if relative path was like ./image.jpg
+            if safe_filename_base.startswith('_'):
+                 safe_filename_base = safe_filename_base[1:]
+            # Add original extension back
+            _, ext = os.path.splitext(image_full_path)
+            output_image_name = safe_filename_base # Use base name without original extension yet
+            output_label_name = os.path.splitext(output_image_name)[0] + ".txt" # Label file will have .txt
+            output_image_name_with_ext = output_image_name + ext.lower() # Add lowercase extension back
+
+            output_image_path = os.path.join(output_image_folder, output_image_name_with_ext)
+            label_path = os.path.join(output_label_folder, output_label_name)
+
+        except Exception as e:
+            logging.error(f"Error generating output path for {image_full_path}: {e}. Skipping image.") # Changed from print
+            continue # Skip this image if path generation fails
+
+
+        # logging.info(f"  [{i+1}/{len(image_full_paths_list)}] Processing {os.path.basename(image_full_path)} -> {output_image_name_with_ext}...") # Uncomment for verbose - Changed from print
+
+        img = cv2.imread(image_full_path)
+        if img is None:
+            logging.warning(f"Warning: Could not read image {os.path.basename(image_full_path)}. Skipping.") # Changed from print
+            continue
+
+        h, w, _ = img.shape
+
+        try:
+            outputs = d2_predictor(img)
+        except Exception as e:
+            logging.error(f"Error during Detectron2 inference for {os.path.basename(image_full_path)}: {e}. Skipping.") # Changed from print
+            # Ensure empty label file exists and image is copied if D2 fails
+            open(label_path, 'w').close()
+            cv2.imwrite(output_image_path, img)
+            processed_count += 1 # Count image processed, even if D2 failed
+            continue
+
+        instances = outputs["instances"].to("cpu")
+        # Filter instances by score threshold
+        valid_instances = instances[instances.scores > D2_CONFIDENCE_THRESHOLD]
+
+        # Check if any valid instances with masks and classes were found
+        if not valid_instances.has("pred_masks") or not valid_instances.has("pred_classes") or len(valid_instances) == 0:
+            # logging.info(f"  No valid objects found for {os.path.basename(image_full_path)} at threshold {D2_CONFIDENCE_THRESHOLD}.") # Uncomment for verbose - Changed from print
+            # Create an empty label file to indicate no objects found in this image
+            open(label_path, 'w').close()
+            # Copy the original image to the output dataset directory
+            cv2.imwrite(output_image_path, img)
+            processed_count += 1 # Count images where D2 processed and image was copied
+            continue
+
+        pred_masks = valid_instances.pred_masks.numpy()
+        pred_classes = valid_instances.pred_classes.tolist()
+        # scores = valid_instances.scores.tolist() # Use if you need scores
+
+        # Prepare to write annotations for this image - clear previous content
+        open(label_path, 'w').close()
+        annotations_for_image = [] # Collect annotations before writing
+
+        # Process each detected instance
+        for j in range(len(valid_instances)):
+            mask = pred_masks[j] # This is a boolean mask from Detectron2
+            d2_class_id_raw = pred_classes[j]
+
+            # Get Detectron2 class name (prefer metadata if available)
+            d2_class_name = None
+            if d2_metadata is not None and hasattr(d2_metadata, 'thing_classes') and d2_metadata.thing_classes and d2_class_id_raw < len(d2_metadata.thing_classes):
+                 d2_class_name = d2_metadata.thing_classes[d2_class_id_raw]
+
+            # If metadata not available or ID out of range, try mapping using raw ID
+            if d2_class_name is None:
+                 # logging.warning(f"  Warning: D2 metadata missing or ID out of range for raw ID {d2_class_id_raw}. Trying mapping by ID.") # Optional warning - Changed from print
+                 potential_d2_keys = [d2_class_id_raw, str(d2_class_id_raw)]
+                 found_key = None
+                 for key in potential_d2_keys:
+                     if key in CLASS_MAPPING:
+                          found_key = key
+                          break
+                 if found_key is not None:
+                      d2_class_name = found_key # Use the key that worked for mapping lookup
+                 else:
+                     # logging.warning(f"  Warning: No mapping found for Detectron2 raw ID {d2_class_id_raw}. Skipping this object.") # Uncomment for verbose - Changed from print
+                     continue # Skip this object
+
+            # --- Apply Class Mapping ---
+            # Use the determined d2_class_name/ID as the key for final lookup in CLASS_MAPPING
+            if d2_class_name in CLASS_MAPPING:
+                yolo_class_id = CLASS_MAPPING[d2_class_name]
+
+                # --- Convert Mask to Polygon ---
+                # Pass the boolean mask; mask_to_yolo_polygon handles uint8 conversion
+                polygon_coords = mask_to_yolo_polygon(mask, w, h)
+
+                # --- Store Annotation ---
+                if polygon_coords: # Only store if a valid polygon was extracted
+                     annotations_for_image.append(f"{yolo_class_id} " + " ".join(map(str, polygon_coords)))
+                # else:
+                    # logging.warning(f"  Warning: Could not get valid polygon for class mapped to YOLO ID {yolo_class_id} in {os.path.basename(image_full_path)}.") # Uncomment for verbose - Changed from print
+
+            else:
+                 # This case should theoretically be caught by the checks above, but as a fallback:
+                 logging.warning(f"  Warning: No mapping found for Detectron2 class '{d2_class_name}' in CLASS_MAPPING. Skipping this object.") # Changed from print
+
+
+        # Write all collected annotations for the current image
+        if annotations_for_image:
+            with open(label_path, 'w') as f:
+                f.write("\n".join(annotations_for_image))
+            # Copy the original image to the output dataset directory ONLY if annotations were written
+            # This ensures images with no detected/mapped objects don't end up in the dataset
+            cv2.imwrite(output_image_path, img)
+            processed_count += 1 # Count only if image was saved (meaning annotations were written)
+        else:
+            # If no annotations but D2 processed, an empty label exists. Copy image and count.
+            if os.path.exists(label_path):
+                cv2.imwrite(output_image_path, img)
+                processed_count += 1 # Count image processed, even if label is empty
+
+
+    logging.info(f"Finished processing images for split: {os.path.basename(output_image_folder)}. Successfully processed/saved {processed_count} images with labels.") # Changed from print
+    return processed_count
+
+
+logging.info("\nStarting dataset generation and annotation for run count", CURRENT_EXECUTION_COUNT, "...") # Changed from print
+
+# Find all image files recursively
+image_full_paths_list = find_all_images_recursive(INPUT_IMAGE_BASE_DIR_THIS_RUN)
+
+if not image_full_paths_list:
+    logging.error(f"Fatal Error: No images found recursively in {INPUT_IMAGE_BASE_DIR_THIS_RUN}. Please check the path and subdirectories.") # Changed from print
+    sys.exit(1)
+
+# Perform the train/validation split on the list of image full paths
+if SPLIT_RATIO > 0 and SPLIT_RATIO < 1 and len(image_full_paths_list) >= 2: # Need at least 2 samples to split
+    try:
+        train_paths, val_paths = train_test_split(
+            image_full_paths_list,
+            test_size=SPLIT_RATIO,
+            random_state=RANDOM_SEED
+        )
+        logging.info(f"Split {len(image_full_paths_list)} images: {len(train_paths)} for training, {len(val_paths)} for validation.") # Changed from print
+    except ValueError as e:
+         logging.error(f"Error during train/test split: {e}. Putting all images in training set.") # Changed from print
+         train_paths = image_full_paths_list
+         val_paths = []
+else:
+    if len(image_full_paths_list) < 2:
+         logging.warning(f"Warning: Only {len(image_full_paths_list)} image(s) found. Cannot perform split. Putting all in training set.") # Changed from print
+    else:
+         logging.warning("Warning: SPLIT_RATIO is not between 0 and 1. Putting all images in the training set.") # Changed from print
+    train_paths = image_full_paths_list
+    val_paths = []
+
+
+# --- Process Training Split Images ---
+total_train_processed = process_images_for_split(
+    train_paths,
+    output_train_image_dir_full,
+    output_train_label_dir_full,
+    d2_predictor,
+    d2_metadata,
+    CLASS_MAPPING,
+    INPUT_IMAGE_BASE_DIR_THIS_RUN # Pass the base dir for name flattening
+)
+
+# --- Process Validation Split Images ---
+total_val_processed = 0
+if val_paths: # Only process validation if there are validation images after split
+    total_val_processed = process_images_for_split(
+        val_paths,
+        output_val_image_dir_full,
+        output_val_label_dir_full,
+        d2_predictor,
+        d2_metadata,
+        CLASS_MAPPING,
+        INPUT_IMAGE_BASE_DIR_THIS_RUN # Pass the base dir for name flattening
+    )
+else:
+    logging.info("\nNo validation images processed (either no validation set or split resulted in empty val).") # Changed from print
+
+
+logging.info(f"\nDataset generation summary for count {CURRENT_EXECUTION_COUNT}: {total_train_processed} training images processed, {total_val_processed} validation images processed.") # Changed from print
+
+if total_train_processed == 0:
+    logging.error("Fatal Error: No training images were processed. Cannot proceed with training.") # Changed from print
+    sys.exit(1)
+if total_val_processed == 0 and SPLIT_RATIO > 0 and len(image_full_paths_list) >= 2:
+     logging.warning("Warning: Validation set was created but no validation images were processed.") # Changed from print
+     logging.warning("Validation during training might be skipped or fail. Check if D2 found objects, mapping, or polygon conversion worked for validation images.") # Changed from print
+
+
+# --- Part 5: Create dataset.yaml file for THIS run's dataset ---
+logging.info("\nCreating dataset.yaml file for run count", CURRENT_EXECUTION_COUNT, "...") # Changed from print
+
+dataset_yaml_content = {
+    'path': os.path.abspath(OUTPUT_BASE_DIR_THIS_RUN), # Absolute path to THIS run's dataset root
+    'train': TRAIN_IMAGE_SUBDIR_REL, # Path relative to 'path'
+    'val': VAL_IMAGE_SUBDIR_REL,     # Path relative to 'path' - points to validation images
+    'nc': len(YOLO_CLASS_NAMES), # Number of classes
+    'names': YOLO_CLASS_NAMES # List of class names in the order of YOLOv8 class IDs (0, 1, ...)
+}
+
+dataset_yaml_path = os.path.join(OUTPUT_BASE_DIR_THIS_RUN, "dataset.yaml")
+try:
+    with open(dataset_yaml_path, 'w') as f:
+        yaml.dump(dataset_yaml_content, f, default_flow_style=False) # Use block style for readability
+    logging.info(f"dataset.yaml created successfully at: {dataset_yaml_path}") # Changed from print
+except Exception as e:
+    logging.error(f"Fatal Error: Could not write dataset.yaml file to {dataset_yaml_path}: {e}") # Changed from print
+    sys.exit(1)
+
+
+# --- Part 6: YOLOv8 Incremental Training ---
+logging.info("\nStarting YOLOv8 incremental training for run count", CURRENT_EXECUTION_COUNT, "...") # Changed from print
+
+# Determine which model to load for training
+yolo_load_model_path = None
+try:
+    current_count_int = int(CURRENT_EXECUTION_COUNT)
+    if current_count_int == 1:
+        # First run, load the base model type
+        yolo_load_model_path = BASE_YOLO_MODEL_TYPE
+        logging.info(f"Execution count is {CURRENT_EXECUTION_COUNT}. Loading base YOLO model: {yolo_load_model_path}") # Changed from print
+    elif current_count_int > 1:
+        # Subsequent run, calculate the previous count and try to load that model
+        previous_count_int = current_count_int - 1
+        # Format the previous count back into the string format (e.g., 1 -> '0001')
+        previous_count_str = f"{previous_count_int:04d}" # Assuming 4-digit padding based on '0001' example
+
+        # Construct the expected filename for the model from the previous run
+        # Base name without extension (e.g., 'yolov8n-seg')
+        base_model_name_without_ext = os.path.splitext(os.path.basename(BASE_YOLO_MODEL_TYPE))[0]
+        previous_model_filename = f"{base_model_name_without_ext}_trained_count_{previous_count_str}.pt"
+        previous_model_path = os.path.join(MODELS_DIRECTORY, previous_model_filename)
+
+        if os.path.exists(previous_model_path):
+            yolo_load_model_path = previous_model_path
+            logging.info(f"Execution count is {CURRENT_EXECUTION_COUNT}. Loading previous model: {yolo_load_model_path}") # Changed from print
+        else:
+            logging.warning(f"Warning: Previous model not found at {previous_model_path}.") # Changed from print
+            logging.warning(f"Falling back to loading the base YOLO model: {BASE_YOLO_MODEL_TYPE}") # Changed from print
+            yolo_load_model_path = BASE_YOLO_MODEL_TYPE
+    else:
+         # This case should ideally not be reached if find_latest_data_directory works
+         logging.error(f"Fatal Error: Unexpected execution count value or format: {CURRENT_EXECUTION_COUNT}") # Changed from print
+         sys.exit(1)
+
+except ValueError:
+    logging.error(f"Fatal Error: Could not parse execution count '{CURRENT_EXECUTION_COUNT}' as an integer.") # Changed from print
+    sys.exit(1)
+except Exception as e:
+    logging.error(f"Fatal Error determining model to load: {e}") # Changed from print
+    sys.exit(1)
+
+
+# Load the determined YOLOv8 segmentation model
+try:
+    # If yolo_load_model_path is a path to a .pt file, it loads from there.
+    # If it's a standard name like 'yolov8n-seg.pt', it downloads if not exists.
+    model = YOLO(yolo_load_model_path)
+    logging.info(f"YOLOv8 model loaded successfully: {yolo_load_model_path}") # Changed from print
+    # If loading a previously trained model, verify the number of classes matches the config
+    if yolo_load_model_path != BASE_YOLO_MODEL_TYPE:
+        if hasattr(model.model, 'nc') and model.model.nc != len(YOLO_CLASS_NAMES):
+             logging.error(f"Fatal Error: Loaded model has {model.model.nc} classes, but your configuration has {len(YOLO_CLASS_NAMES)}.") # Changed from print
+             logging.error("Ensure CLASS_MAPPING and YOLO_CLASS_NAMES match the number of classes the model was trained on.") # Changed from print
+             sys.exit(1)
+        elif hasattr(model.model, 'nc'):
+             logging.info(f"Loaded model has {model.model.nc} classes, matching configured {len(YOLO_CLASS_NAMES)} classes.") # Changed from print
+        else:
+             logging.warning("Warning: Could not verify class count of loaded model. Proceeding.") # Changed from print
+
+
+except Exception as e:
+    logging.error(f"Fatal Error loading YOLOv8 model '{yolo_load_model_path}': {e}") # Changed from print
+    logging.error("Please check the model path, file integrity, and version compatibility.") # Changed from print
+    sys.exit(1)
+
+
+# Train the model using the generated dataset for THIS run
+try:
+    logging.info(f"Training YOLOv8 on dataset specified in: {dataset_yaml_path}") # Changed from print
+    logging.info(f"Training for {EPOCHS} epochs with batch size {BATCH_SIZE} and image size {IMG_SIZE}.") # Changed from print
+
+    # Check if validation data exists before enabling validation
+    should_validate = total_val_processed > 0
+
+    results = model.train(
+        data=dataset_yaml_path, # Path to THIS run's dataset.yaml
+        epochs=EPOCHS,          # Number of training epochs
+        imgsz=IMG_SIZE,         # Image size for training
+        batch=BATCH_SIZE,       # Batch size
+        val=should_validate,    # Enable validation only if validation data was processed
+        patience=PATIENCE,      # Early stopping patience (only active if val=True)
+        # device='cpu'          # Uncomment and set to 'cpu' or GPU index if needed, e.g., '0' for gpu:0
+        # workers=8             # Number of dataloader workers (adjust based on CPU cores/RAM)
+        # project='my_segmentation_training', # Custom project name for runs/segment/
+        # name=f'run_{CURRENT_EXECUTION_COUNT}', # Custom run name based on count
+        # cache=True            # Cache images/labels for faster training (requires more RAM/disk)
+        # Other args...
+    )
+    logging.info("\nYOLOv8 training finished.") # Changed from print
+    # Training results (including best.pt and last.pt weights) are automatically saved
+    # by Ultralytics in runs/segment/your_run_name/ directory.
+
+    # --- Save the final trained model to the specified models directory with count in filename ---
+    # Base name without extension (e.g., 'yolov8n-seg')
+    base_model_name_without_ext = os.path.splitext(os.path.basename(BASE_YOLO_MODEL_TYPE))[0]
+    final_model_filename = f"{base_model_name_without_ext}_trained_count_{CURRENT_EXECUTION_COUNT}.pt"
+    FINAL_MODEL_SAVE_PATH = os.path.join(MODELS_DIRECTORY, final_model_filename)
+
+    try:
+        model.save(FINAL_MODEL_SAVE_PATH)
+        logging.info(f"Final trained model explicitly saved to: {FINAL_MODEL_SAVE_PATH}") # Changed from print
+    except Exception as e:
+        logging.warning(f"Warning: Could not explicitly save the final model to {FINAL_MODEL_SAVE_PATH}: {e}") # Changed from print
+        logging.warning("The model weights are still saved automatically by Ultralytics in the runs/ directory.") # Changed from print
+
+
+    logging.info(f"Training results for run count {CURRENT_EXECUTION_COUNT} are automatically saved by Ultralytics in a directory within runs/segment/.") # Changed from print
+
+except Exception as e:
+    logging.error(f"Fatal Error during YOLOv8 training: {e}") # Changed from print
+    logging.error("Review the error, check dataset.yaml, paths, class mapping, and device config.") # Changed from print
+    sys.exit(1)
+
+
+print("\nScript execution finished successfully.") # This line remains as print to terminal
+sys.exit(0) # Exit with a success code
