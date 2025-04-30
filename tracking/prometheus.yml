@@ -1,0 +1,15 @@
+global:
+  scrape_interval:     2s  # How often Prometheus should scrape metrics (default is 15s, but set to 2s as needed for this assign)
+  evaluation_interval: 2s  # How often rules should be evaluated (if using alerting/recording rules)
+
+scrape_configs:
+  # Scrape Prometheus' own metrics
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['localhost:9090']  # Prometheus runs on port 9090
+
+  # Scrape custom Linux metrics exporter (our Python app)
+  - job_name: 'linux_metrics_app'
+    scrape_interval: 2s  # Define a custom scrape interval for this job (optional, defaults to global setting)
+    static_configs:
+    - targets: ['localhost:18000']  # Our Python script exposes metrics on port 18000
