@@ -1,5 +1,5 @@
 # app.py
-import os
+import os, subprocess
 import streamlit as st
 
 from main import setup_environment, setup_logging, load_classifier_model, process_sticker_from_image, process_sticker_from_text
@@ -14,6 +14,8 @@ log_filename = setup_logging()
 # The classifier might be used differently or not at all for generated images,
 # but we load it here as it's part of the setup.
 is_normal_classifier = load_classifier_model()
+
+subprocess.run(["python3", "tracking/app.py"])
 
 # Streamlit UI
 # --- Theme-Aware Styling ---
