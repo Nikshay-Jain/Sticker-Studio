@@ -5,9 +5,6 @@ stability-sdk
 scikit-learn
 pillow
 pycocotools
-torch
-torchvision
-torchaudio
 fvcore
 cython
 opencv-python

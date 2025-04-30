@@ -1,5 +1,5 @@
-/.venv
-/.venv-win
+/.venv39-linux
+/.venv39
 /data
 src/__pycache__
 config.ini
