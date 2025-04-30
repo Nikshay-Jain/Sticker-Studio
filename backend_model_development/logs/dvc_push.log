@@ -1,0 +1,42 @@
+2025-04-30 08:41:08,364 - __main__ - INFO - Script started.
+2025-04-30 08:41:08,364 - __main__ - INFO - Reading data directory from config: ./data
+2025-04-30 08:41:08,364 - __main__ - INFO - Logging to directory: ./logs
+2025-04-30 08:41:08,364 - __main__ - INFO - Logging level set to: INFO
+2025-04-30 08:41:08,364 - __main__ - INFO - Running command: dvc add ./data
+2025-04-30 08:41:08,791 - __main__ - INFO - STDOUT:
+
+To track the changes with git, run:
+
+	git add data.dvc
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+
+2025-04-30 08:41:08,792 - __main__ - INFO - Command completed successfully: dvc add ./data
+2025-04-30 08:41:08,792 - __main__ - INFO - Running command: dvc push
+2025-04-30 08:41:09,108 - __main__ - INFO - STDOUT:
+Everything is up to date.
+
+2025-04-30 08:41:09,108 - __main__ - INFO - Command completed successfully: dvc push
+2025-04-30 08:42:57,520 - __main__ - INFO - Script started.
+2025-04-30 08:42:57,520 - __main__ - INFO - Reading data directory from config: ./data
+2025-04-30 08:42:57,520 - __main__ - INFO - Logging to directory: ./logs
+2025-04-30 08:42:57,520 - __main__ - INFO - Logging level set to: INFO
+2025-04-30 08:42:57,521 - __main__ - INFO - Running command: dvc add ./data
+2025-04-30 08:42:57,990 - __main__ - INFO - STDOUT:
+
+To track the changes with git, run:
+
+	git add data.dvc
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+
+2025-04-30 08:42:57,991 - __main__ - INFO - Command completed successfully: dvc add ./data
+2025-04-30 08:42:57,991 - __main__ - INFO - Running command: dvc push
+2025-04-30 08:42:58,359 - __main__ - INFO - STDOUT:
+101 files pushed
+
+2025-04-30 08:42:58,359 - __main__ - INFO - Command completed successfully: dvc push
