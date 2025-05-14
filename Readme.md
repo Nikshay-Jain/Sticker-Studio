@@ -3,6 +3,7 @@
 ## Authors
 - Nikshay Jain | MM21B044
 - Sahil Kokare | MM21B036
+- GitHub: https://github.com/Nikshay-Jain/Sticker-Studio.git
 
 ## Table of Contents
 1.  [Project Overview](#project-overview)
